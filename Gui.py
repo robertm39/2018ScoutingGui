@@ -121,28 +121,37 @@ class ZScoutFrame(tk.Frame):
                 self.team_ranks_panel = tk.Frame(self.ranking_frame)
                 self.team_ranks_panel.grid(row=3, column=0)
                 
-                self.team_ranks_canvas_scroll = tk.Scrollbar(self.team_ranks_panel, orient=tk.VERTICAL)
+#                self.team_ranks_canvas_scroll = tk.Scrollbar(self.team_ranks_panel, orient=tk.VERTICAL)
                 
-                self.team_ranks_canvas = tk.Canvas(self.team_ranks_panel, yscrollcommand=self.team_ranks_canvas_scroll.set)
-                self.team_ranks_canvas.grid(row=0, column=0)
-                self.team_ranks_panel.bind('<Configure>', lambda e: config_inner_ranking_canvas(self.team_ranks_canvas))
-                self.team_ranks_canvas_scroll.config(command=self.team_ranks_canvas.yview)
+#                self.team_ranks_canvas = tk.Canvas(self.team_ranks_panel)#, yscrollcommand=self.team_ranks_canvas_scroll.set)
+#                self.team_ranks_canvas.grid(row=0, column=0)
+#                self.team_ranks_panel.bind('<Configure>', lambda e: config_inner_ranking_canvas(self.team_ranks_canvas))
+#                self.team_ranks_canvas_scroll.config(command=self.team_ranks_canvas.yview)
                 
-                self.team_ranks_canvas_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E+tk.W)
+#                self.team_ranks_canvas_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E)#+tk.W)
                 
-                self.team_ranks_inner_panel = tk.Frame(self.team_ranks_canvas)
-                self.team_ranks_inner_panel.grid(row=0, column=0)
+                self.team_ranks_inner_panel = tk.Frame(self.team_ranks_panel)#self.team_ranks_canvas)
+                self.team_ranks_inner_panel.pack(side=tk.TOP)#grid(row=0, column=0)
                 
-                self.team_ranks_canvas.create_window((0, 0), window=self.team_ranks_inner_panel, anchor='nw', tags='self.team_ranks_inner_panel')
+#                self.team_ranks_canvas.create_window((0, 0), window=self.team_ranks_inner_panel, anchor='nw', tags='self.team_ranks_inner_panel')
+                
+                self.team_ranks_textbox = tk.Text(self.team_ranks_inner_panel, width=25)
+                self.team_ranks_textbox.pack(side=tk.TOP)
                 
                 r_teams = self.teams[:]
                 r_teams.sort(key=lambda t:-score(t))
                 for i in range(0, len(r_teams)):
                     team = r_teams[i]
                     string = str(i+1) + ': ' + str(team[3:])
-                    string += ' ' * (11-len(string)) + 'with ' + '%.2f' % score(team)
-                    t_label = tk.Label(self.team_ranks_inner_panel, text=string, anchor=tk.CENTER)
-                    t_label.pack(side=tk.TOP)
+                    string += ' ' * (11-len(string)) + 'with ' + '%.2f' % score(team)# + '\n'
+#                    print('length:', len(string))
+                    if i != len(r_teams) - 1:
+                        string += '\n'
+                    self.team_ranks_textbox.insert(tk.INSERT, chars=string)
+#                    t_label = tk.Label(self.team_ranks_inner_panel, text=string, anchor=tk.CENTER)
+#                    t_label.pack(side=tk.TOP)
+                self.team_ranks_textbox.config(state=tk.DISABLED)
+                    
                 
             for child in self.ranking_frame.winfo_children():
                 child.destroy()
@@ -151,24 +160,13 @@ class ZScoutFrame(tk.Frame):
             
             self.rank_box_canvas = tk.Canvas(self.ranking_frame, relief=tk.RAISED, xscrollcommand=self.ranking_scroll.set)
             
-#            self.ranking_scroll.pack(side=tk.TOP)
             self.ranking_scroll.grid(row=0, column=0, sticky=tk.N+tk.S+tk.E+tk.W)
             self.rank_box_canvas.grid(row=1, column=0)
             self.rank_box_frame = tk.Frame(self.rank_box_canvas, relief=tk.RAISED)
             self.rank_box_frame.grid(row=0, column=0)
             self.rank_box_frame.bind('<Configure>', lambda e: config_ranking_canvas(self.rank_box_canvas))
             self.rank_box_canvas.create_window((0, 0), window=self.rank_box_frame, tags='self.rank_box_frame')
-#            self.rank_box_canvas.create_window((0, 0), anchor='nw', window=self.rank_box_frame, tags='self.rank_box_frame')
             self.ranking_scroll.config(command=self.rank_box_canvas.xview)
-            
-#            self.ranking_scroll = tk.Scrollbar(self.ranking_frame, orient=tk.HORIZONTAL)
-#            self.ranking_scroll.pack(side=tk.TOP)
-#            self.rank_box_canvas = tk.Canvas(self.ranking_frame, relief=tk.RAISED, xscrollcommand=self.ranking_scroll.set)
-#            self.rank_box_canvas.pack(side=tk.TOP, padx=3, pady=3)
-#            self.ranking_scroll.config(command=self.rank_box_canvas.xview)
-#            self.rank_box_frame = tk.Frame(self.rank_box_canvas, relief=tk.RAISED)
-#            self.rank_box_canvas.create_window((0, 50), window=self.rank_box_frame)
-#            self.rank_box_frame.pack(side=tk.TOP)
             
             self.cat_weight_fields = {}
             
@@ -282,113 +280,86 @@ class ZScoutFrame(tk.Frame):
                 first = False
         #end team summary methods
         
-        self.parent.title("ZScout")
-        self.pack(fill=tk.BOTH, expand=True)
-        
         def config_canvas(canvas, width=1343, height=650): #1343, 662   change to 2000
             canvas.configure(scrollregion=canvas.bbox('all'))
             canvas.config(width=width,height=height)
         
-        #make menu
-        self.menubar = tk.Menu(self)
-        self.frame_select = tk.Menu(self.menubar, tearoff=0)
-        self.frame_select.add_command(label='Scouting', command=go_to_scouting_frame)
-        self.frame_select.add_command(label='Teams', command=go_to_teams_frame)
-        self.frame_select.add_command(label='Competition', command=go_to_competition_frame)
-        self.frame_select.add_command(label='Ranking', command=go_to_ranking_frame)
-        self.menubar.add_cascade(label='Sections', menu=self.frame_select)
-        self.parent.config(menu=self.menubar)
-        #end make menu
-
-        self.year = ""
         
-        #make team summary frame
+        def setup_menu():
+            self.menubar = tk.Menu(self)
+            self.frame_select = tk.Menu(self.menubar, tearoff=0)
+            self.frame_select.add_command(label='Scouting', command=go_to_scouting_frame)
+            self.frame_select.add_command(label='Teams', command=go_to_teams_frame)
+            self.frame_select.add_command(label='Competition', command=go_to_competition_frame)
+            self.frame_select.add_command(label='Ranking', command=go_to_ranking_frame)
+            self.menubar.add_cascade(label='Sections', menu=self.frame_select)
+            self.parent.config(menu=self.menubar)
         
-        self.scouting_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
-        self.active_frame = self.scouting_frame
+        def setup_team_summary_frame():
+            self.scouting_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
+            self.active_frame = self.scouting_frame
+            
+            self.team_summary_y_scroll = tk.Scrollbar(self.scouting_frame, orient=tk.VERTICAL)
+            self.team_summary_y_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E+tk.W)
+            
+            self.team_summary_canvas = tk.Canvas(self.scouting_frame, yscrollcommand=self.team_summary_y_scroll.set)
+            self.team_summary_canvas.grid(row=0, column=0)
+            
+            self.team_summary_canvas_frame = tk.Frame(self.team_summary_canvas)
+            self.team_summary_canvas_frame.bind('<Configure>', lambda e: config_canvas(self.team_summary_canvas))
+            
+            self.team_summary_canvas.create_window((0,0), window=self.team_summary_canvas_frame, anchor='nw', tags='self.team_summary_canvas_frame')
+            
+            self.team_summary_y_scroll.config(command=self.team_summary_canvas.yview)
+            
+            self.team_summary_team_label = tk.Label(self.team_summary_canvas_frame, text='Team:')
+            self.team_summary_team_label.pack(side=tk.TOP, padx=5, pady=5)
+            
+            self.team_summary_team_field = tk.Entry(self.team_summary_canvas_frame)
+            self.team_summary_team_field.pack(side=tk.TOP, padx=5, pady=5)
+            
+            self.team_summary_button = tk.Button(self.team_summary_canvas_frame, command=show_summary, text='Show Summary')
+            self.team_summary_button.pack(side=tk.TOP, padx=5, pady=5)
+            
+            self.team_summary_inner_frame = tk.Frame(self.team_summary_canvas_frame, relief=tk.RAISED, borderwidth=1)
         
-#        self.team_summary_x_scroll = tk.Scrollbar(self.scouting_frame, orient=tk.HORIZONTAL)
-#        self.team_summary_x_scroll.grid(row=1, column=0, sticky=tk.N+tk.S+tk.E+tk.W)
+        def setup_comp_frame():
+            #vars
+            self.error = tk.StringVar()
+            self.contrs_from_team_from_category = {}
+            self.categories = []
+            #end vars
+            
+            self.competition_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
+            self.comp_label = tk.Label(self.competition_frame, text="Competition:")
+            self.comp_label.pack(side=tk.TOP, padx=5, pady=5)
+    
+            self.comp_choose = tk.Entry(self.competition_frame)
+            self.comp_choose.pack(side=tk.TOP, padx=5, pady=5)
+    
+            self.comp_button = tk.Button(self.competition_frame, text="Accept", command=set_comp)
+            self.comp_button.pack(side=tk.TOP, padx=5, pady=5)
+    
+            self.error_label = tk.Label(self.competition_frame, textvariable=self.error)
+            self.error_label.pack(side=tk.TOP, pady=5)
         
-        self.team_summary_y_scroll = tk.Scrollbar(self.scouting_frame, orient=tk.VERTICAL)
-        self.team_summary_y_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E+tk.W)
+        def setup_ranking_frame():
+            self.ranking_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
         
-        self.team_summary_canvas = tk.Canvas(self.scouting_frame, yscrollcommand=self.team_summary_y_scroll.set)
-        self.team_summary_canvas.grid(row=0, column=0)
+        def setup_teams_frame():
+            self.teams_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
+            self.teams_text = tk.Text(self.teams_frame, wrap=tk.NONE, width=1200)
+            self.teams_text.pack(side=tk.TOP, padx=0, pady=5)
         
-        self.team_summary_canvas_frame = tk.Frame(self.team_summary_canvas)
-        self.team_summary_canvas_frame.bind('<Configure>', lambda e: config_canvas(self.team_summary_canvas))
+        self.parent.title('ZScout')
+        self.pack(fill=tk.BOTH, expand=True)
+        self.year = ''
         
-        self.team_summary_canvas.create_window((0,0), window=self.team_summary_canvas_frame, anchor='nw', tags='self.team_summary_canvas_frame')
-        
-#        self.team_summary_x_scroll.config(command=self.team_summary_canvas.xview)
-        self.team_summary_y_scroll.config(command=self.team_summary_canvas.yview)
-        
-        self.team_summary_team_label = tk.Label(self.team_summary_canvas_frame, text='Team:')
-        self.team_summary_team_label.pack(side=tk.TOP, padx=5, pady=5)
-        
-        self.team_summary_team_field = tk.Entry(self.team_summary_canvas_frame)
-        self.team_summary_team_field.pack(side=tk.TOP, padx=5, pady=5)
-        
-        self.team_summary_button = tk.Button(self.team_summary_canvas_frame, command=show_summary, text='Show Summary')
-        self.team_summary_button.pack(side=tk.TOP, padx=5, pady=5)
-        
-        self.team_summary_inner_frame = tk.Frame(self.team_summary_canvas_frame, relief=tk.RAISED, borderwidth=1)
-        #end make team summary frame
-        
-        #make competition frame
-        
-        #vars
-        self.error = tk.StringVar()
-        self.contrs_from_team_from_category = {}
-        self.categories = []
-        #end vars
-        
-        self.competition_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
-        self.comp_label = tk.Label(self.competition_frame, text="Competition:")
-        self.comp_label.pack(side=tk.TOP, padx=5, pady=5)
-
-        self.comp_choose = tk.Entry(self.competition_frame)
-        self.comp_choose.pack(side=tk.TOP, padx=5, pady=5)
-
-        self.comp_button = tk.Button(self.competition_frame, text="Accept", command=set_comp)
-        self.comp_button.pack(side=tk.TOP, padx=5, pady=5)
-
-        self.error_label = tk.Label(self.competition_frame, textvariable=self.error)
-        self.error_label.pack(side=tk.TOP, pady=5)
-        #end make competition frame
-        
-        #make ranking frame
-        self.ranking_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
-        #end make ranking frame
-        
-        #make teams frame
-        
-        self.teams_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
-        
-        self.teams_text = tk.Text(self.teams_frame, wrap=tk.NONE, width=1200)
-        self.teams_text.pack(side=tk.TOP, padx=0, pady=5)
-        
-#        self.bold_font = tk.Font(family="Helvetica", size=14, weight="bold")
-#        self.text.tag_configure("BOLD", font=self.bold_font)
-        
-#        self.teams_scroll = tk.Scrollbar(self.teams_frame, orient=tk.VERTICAL)
-#        self.teams_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E+tk.W)
-#        
-#        self.teams_canvas = tk.Canvas(self.teams_frame, yscrollcommand=self.teams_scroll.set)
-#        self.teams_canvas.grid(row=0, column=0)
-#        
-#        self.teams_mid_frame = tk.Frame(self.teams_canvas, relief=tk.RAISED, borderwidth=1)
-#        self.teams_mid_frame.bind('<Configure>', lambda e: config_canvas(self.teams_canvas, width=800, height=662))
-#        
-#        self.teams_canvas.create_window((0,0), window=self.teams_mid_frame, anchor='nw', tags='self.teams_mid_frame')
-#        
-#        self.teams_scroll.config(command=self.teams_canvas.yview)
-#        
-#        self.teams_inner_frame = tk.Text(self.teams_mid_frame, wrap=tk.NONE, relief=tk.RAISED, borderwidth=1)
-#        self.teams_inner_frame.pack(side=tk.TOP)
-        
-        #end make teams frame
+        setup_menu()
+        setup_team_summary_frame()
+        setup_comp_frame()
+        setup_ranking_frame()
+        setup_teams_frame()
 
 def get_scouting_graph_data(match_data, red_and_blue, num_margins=None):
     
