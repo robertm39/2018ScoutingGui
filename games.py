@@ -68,8 +68,9 @@ def team_contrs(team_scouting, game, pr=False):
     return contrs
 
 def steamworks_process_match(match):
-    match = match.copy()
-    match['caught_rope'] |= match['hanging']
+    if 'caught_rope' in match:
+        match = match.copy()
+        match['caught_rope'] |= match['hanging']
     return match
 
 def steamworks_process_scouting(scouting):
@@ -81,8 +82,9 @@ def steamworks_process_scouting(scouting):
         result[team] = matches
     return result
 
-STEAMWORKS = Game(['auton_lowgoal',
+steamworks_cats = ['auton_lowgoal',
                    'auton_highgoal',
+                   'auton_gears',
                    'try_lft_auton_gears',
                    'try_cen_auton_gears',
                    'try_rgt_auton_gears',
@@ -96,22 +98,8 @@ STEAMWORKS = Game(['auton_lowgoal',
                    'teleop_gears',
                    'hanging',
                    'caught_rope',
-                   'comments'], 
-                    ['auton_lowgoal',
-                   'auton_highgoal',
-                   'try_lft_auton_gears',
-                   'try_cen_auton_gears',
-                   'try_rgt_auton_gears',
-                   'lft_auton_gears',
-                   'cen_auton_gears',
-                   'rgt_auton_gears',
-                   'crossed_baseline',
-                   'pickup_gears',
-                   'teleop_lowgoal',
-                   'teleop_highgoal',
-                   'teleop_gears',
-                   'hanging',
-                   'caught_rope'], None, steamworks_process_scouting)
+                   'comments']
+STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting)
 
 POWER_UP = Game([], [], None)
 

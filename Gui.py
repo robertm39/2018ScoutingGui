@@ -10,7 +10,7 @@ Created on Sun Jan 21 13:36:04 2018
 import tkinter as tk
 import math
 import os
-import scoutingdatagetters as sdg
+import scouting_data_getters as sdg
 import games as gms
 
 class CannotGetCompetitionError(BaseException):
@@ -68,7 +68,10 @@ class ZScoutFrame(tk.Frame):
             self.raw_scouting = self.game.process_scouting(self.raw_scouting)
             self.contrs = gms.contrs(self.raw_scouting, self.game)
             self.averages = gms.averages_from_contrs(self.contrs)
-            self.categories = self.game.categories
+            scouting_cats = self.raw_scouting[list(self.raw_scouting.keys())[0]][0][1].keys()
+            self.categories = [cat for cat in self.game.categories if cat in scouting_cats] #intersection
+            self.numeric_cats = [cat for cat in self.game.numeric_categories if cat in scouting_cats]
+#            print(self.categories)
             self.teams = list(self.contrs.keys())
             
             self.error.set("")
@@ -98,15 +101,15 @@ class ZScoutFrame(tk.Frame):
             canvas.config(width=width,height=height)
             
         def config_inner_ranking_canvas(canvas):
-                canvas.configure(scrollregion=canvas.bbox('all'))
-                canvas.config(width=100,height=500)
+            canvas.configure(scrollregion=canvas.bbox('all'))
+            canvas.config(width=100,height=500)
         
         def config_ranking_frame():
             
             def score(team):
                 avs = self.averages[team]
                 score = 0
-                for cat in self.game.numeric_categories:
+                for cat in self.numeric_cats:
                     av = avs[cat]
                     w = float(self.cat_weight_fields[cat].get())
                     score += av * w
@@ -151,7 +154,7 @@ class ZScoutFrame(tk.Frame):
             
             self.cat_weight_fields = {}
             
-            for cat in self.game.numeric_categories: #Construct weight-setting panel
+            for cat in self.numeric_cats: #Construct weight-setting panel
                 entry_panel = tk.Frame(self.rank_box_frame, relief=tk.RAISED)
                 entry_panel.pack(side=tk.LEFT)
                 
@@ -181,15 +184,10 @@ class ZScoutFrame(tk.Frame):
             for data_type in self.categories:
                 line_data_types.append(data_type)
                 
-#            print('line_data:', line_data)
             for line_data_type in line_data_types:
                 data = line_data.get(line_data_type, '')
-#                print('data:', data, 'line_data_type:', line_data_type, 'length:', len(line_data_type))
                 length = len(line_data_type)
-                
                 inner_length = length - len(data.__str__())
-#                print('inner_length:', inner_length)
-#                print('')
                 result += ' '*math.floor(inner_length /2) + data.__str__() + ' '*math.ceil(inner_length / 2) + ' '*2
              
             return result.rstrip()
@@ -247,7 +245,7 @@ class ZScoutFrame(tk.Frame):
             first=True
             
             #Graphs
-            for category in self.game.numeric_categories:
+            for category in self.numeric_cats:
                 prediction = self.contrs[team][category]
                 if not first:
                     tk.Label(self.team_summary_inner_frame, text=' ').pack(side=tk.TOP, padx=0, pady=5)
