@@ -9,7 +9,7 @@ import os
 import ast
 import csv
 
-import categories as ct
+#import categories as ct
 
 def get_data(line_data):
     match_num = line_data['match_id']
@@ -22,40 +22,40 @@ def get_data(line_data):
     
     return result
 
-def get_steamworks_data(line_data):
-    match_num = line_data['match_id']
-    team_num = 'frc' + line_data['team_id'].__str__()
-    
-    auton_low = line_data['auton_lowgoal']
-    auton_high = line_data['auton_highgoal']
+#def get_steamworks_data(line_data):
+#    match_num = line_data['match_id']
+#    team_num = 'frc' + line_data['team_id'].__str__()
+#    
+#    auton_low = line_data['auton_lowgoal']
+#    auton_high = line_data['auton_highgoal']
+##    auton_gears = line_data['lft_auton_gears'] + line_data['cen_auton_gears'] + line_data['rgt_auton_gears']
 #    auton_gears = line_data['lft_auton_gears'] + line_data['cen_auton_gears'] + line_data['rgt_auton_gears']
-    auton_gears = line_data['lft_auton_gears'] + line_data['cen_auton_gears'] + line_data['rgt_auton_gears']
-    auton_fouls = line_data.get('auton_fouls', 0)
-    auton_tech_fouls = line_data.get('auton_techfouls', 0)
-    auton_baseline = line_data['crossed_baseline']
-    
-    teleop_low = line_data['teleop_lowgoal']
-    teleop_high = line_data['teleop_highgoal']
-    teleop_gears = line_data['teleop_gears']
-    teleop_fouls = line_data.get('teleop_fouls', 0)
-    teleop_tech_fouls = line_data.get('teleop_techfouls', 0)
-    teleop_hung = line_data['hanging']
-    
-    result = {}
-    result[ct.STEAMWORKS_AUTON_LOW_FUEL] = {match_num: {team_num: auton_low}}
-    result[ct.STEAMWORKS_AUTON_HIGH_FUEL] = {match_num: {team_num: auton_high}}
-    result[ct.STEAMWORKS_AUTON_GEARS] = {match_num: {team_num: auton_gears}}
-    result[ct.STEAMWORKS_AUTON_BASELINE] = {match_num: {team_num: auton_baseline}}
-    
-    result[ct.STEAMWORKS_TELEOP_LOW_FUEL] = {match_num: {team_num: teleop_low}}
-    result[ct.STEAMWORKS_TELEOP_HIGH_FUEL] = {match_num: {team_num: teleop_high}}
-    result[ct.STEAMWORKS_TELEOP_GEARS] = {match_num: {team_num: teleop_gears}}
-    result[ct.STEAMWORKS_TELEOP_HANGING] = {match_num: {team_num: teleop_hung}}
-    
-    result[ct.FOULS] = {match_num: {team_num: auton_fouls + teleop_fouls}}
-    result[ct.TECH_FOULS] = {match_num: {team_num: auton_tech_fouls + teleop_tech_fouls}}
-    
-    return result
+#    auton_fouls = line_data.get('auton_fouls', 0)
+#    auton_tech_fouls = line_data.get('auton_techfouls', 0)
+#    auton_baseline = line_data['crossed_baseline']
+#    
+#    teleop_low = line_data['teleop_lowgoal']
+#    teleop_high = line_data['teleop_highgoal']
+#    teleop_gears = line_data['teleop_gears']
+#    teleop_fouls = line_data.get('teleop_fouls', 0)
+#    teleop_tech_fouls = line_data.get('teleop_techfouls', 0)
+#    teleop_hung = line_data['hanging']
+#    
+#    result = {}
+#    result[ct.STEAMWORKS_AUTON_LOW_FUEL] = {match_num: {team_num: auton_low}}
+#    result[ct.STEAMWORKS_AUTON_HIGH_FUEL] = {match_num: {team_num: auton_high}}
+#    result[ct.STEAMWORKS_AUTON_GEARS] = {match_num: {team_num: auton_gears}}
+#    result[ct.STEAMWORKS_AUTON_BASELINE] = {match_num: {team_num: auton_baseline}}
+#    
+#    result[ct.STEAMWORKS_TELEOP_LOW_FUEL] = {match_num: {team_num: teleop_low}}
+#    result[ct.STEAMWORKS_TELEOP_HIGH_FUEL] = {match_num: {team_num: teleop_high}}
+#    result[ct.STEAMWORKS_TELEOP_GEARS] = {match_num: {team_num: teleop_gears}}
+#    result[ct.STEAMWORKS_TELEOP_HANGING] = {match_num: {team_num: teleop_hung}}
+#    
+#    result[ct.FOULS] = {match_num: {team_num: auton_fouls + teleop_fouls}}
+#    result[ct.TECH_FOULS] = {match_num: {team_num: auton_tech_fouls + teleop_tech_fouls}}
+#    
+#    return result
 
 def get_raw_scouting_data(folder):
     """Return the raw scouting data in the folder in a dict from teams to lists of tuples of match numbers and dicts from names to amounts."""

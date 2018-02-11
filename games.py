@@ -6,10 +6,11 @@ Created on Sun Jan 21 13:38:09 2018
 """
 
 class Game:
-    def __init__(self, categories, numeric_categories, get_scouting_from_match):
+    def __init__(self, categories, numeric_categories, get_scouting_from_match, process_scouting=lambda s:s):
         self.categories = categories
         self.numeric_categories = numeric_categories
         self.get_scouting_from_match = get_scouting_from_match
+        self.process_scouting = process_scouting
 
 def put_in_histogram(contrs, upper_limit = False, verbose=False):
     result = {}
@@ -66,6 +67,20 @@ def team_contrs(team_scouting, game, pr=False):
         
     return contrs
 
+def steamworks_process_match(match):
+    match = match.copy()
+    match['caught_rope'] |= match['hanging']
+    return match
+
+def steamworks_process_scouting(scouting):
+    result = {}
+    for team in scouting:
+        matches = []
+        for match in scouting[team]:
+            matches.append((match[0], steamworks_process_match(match[1])))
+        result[team] = matches
+    return result
+
 STEAMWORKS = Game(['auton_lowgoal',
                    'auton_highgoal',
                    'try_lft_auton_gears',
@@ -96,7 +111,8 @@ STEAMWORKS = Game(['auton_lowgoal',
                    'teleop_highgoal',
                    'teleop_gears',
                    'hanging',
-                   'caught_rope'], None)
+                   'caught_rope'], None, steamworks_process_scouting)
+
 POWER_UP = Game([], [], None)
 
 GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}

@@ -65,6 +65,7 @@ class ZScoutFrame(tk.Frame):
             self.game = gms.GAMES_FROM_YEARS[self.year]
 
             self.raw_scouting = sdg.get_raw_scouting_data(self.comp)
+            self.raw_scouting = self.game.process_scouting(self.raw_scouting)
             self.contrs = gms.contrs(self.raw_scouting, self.game)
             self.averages = gms.averages_from_contrs(self.contrs)
             self.categories = self.game.categories
@@ -105,15 +106,11 @@ class ZScoutFrame(tk.Frame):
             def score(team):
                 avs = self.averages[team]
                 score = 0
-#                print('')
                 for cat in self.game.numeric_categories:
                     av = avs[cat]
                     w = float(self.cat_weight_fields[cat].get())
-#                    print(cat, av, w)
                     score += av * w
                 return score
-            
-            
             
             def refresh_rankings():
                 
@@ -121,38 +118,22 @@ class ZScoutFrame(tk.Frame):
                 self.team_ranks_panel = tk.Frame(self.ranking_frame)
                 self.team_ranks_panel.grid(row=3, column=0)
                 
-#                self.team_ranks_canvas_scroll = tk.Scrollbar(self.team_ranks_panel, orient=tk.VERTICAL)
-                
-#                self.team_ranks_canvas = tk.Canvas(self.team_ranks_panel)#, yscrollcommand=self.team_ranks_canvas_scroll.set)
-#                self.team_ranks_canvas.grid(row=0, column=0)
-#                self.team_ranks_panel.bind('<Configure>', lambda e: config_inner_ranking_canvas(self.team_ranks_canvas))
-#                self.team_ranks_canvas_scroll.config(command=self.team_ranks_canvas.yview)
-                
-#                self.team_ranks_canvas_scroll.grid(row=0, column=1, sticky=tk.N+tk.S+tk.E)#+tk.W)
-                
-                self.team_ranks_inner_panel = tk.Frame(self.team_ranks_panel)#self.team_ranks_canvas)
-                self.team_ranks_inner_panel.pack(side=tk.TOP)#grid(row=0, column=0)
-                
-#                self.team_ranks_canvas.create_window((0, 0), window=self.team_ranks_inner_panel, anchor='nw', tags='self.team_ranks_inner_panel')
-                
-                self.team_ranks_textbox = tk.Text(self.team_ranks_inner_panel, width=25)
+                self.team_ranks_textbox = tk.Text(self.team_ranks_panel, width=24, wrap=tk.NONE)
                 self.team_ranks_textbox.pack(side=tk.TOP)
                 
                 r_teams = self.teams[:]
                 r_teams.sort(key=lambda t:-score(t))
+                
                 for i in range(0, len(r_teams)):
                     team = r_teams[i]
                     string = str(i+1) + ': ' + str(team[3:])
-                    string += ' ' * (11-len(string)) + 'with ' + '%.2f' % score(team)# + '\n'
-#                    print('length:', len(string))
+                    string += ' ' * (11-len(string)) + 'with ' + '%.2f' % score(team)
                     if i != len(r_teams) - 1:
                         string += '\n'
                     self.team_ranks_textbox.insert(tk.INSERT, chars=string)
-#                    t_label = tk.Label(self.team_ranks_inner_panel, text=string, anchor=tk.CENTER)
-#                    t_label.pack(side=tk.TOP)
-                self.team_ranks_textbox.config(state=tk.DISABLED)
-                    
                 
+                self.team_ranks_textbox.config(state=tk.DISABLED, height=30)
+                    
             for child in self.ranking_frame.winfo_children():
                 child.destroy()
             
@@ -170,7 +151,7 @@ class ZScoutFrame(tk.Frame):
             
             self.cat_weight_fields = {}
             
-            for cat in self.game.numeric_categories: #Construct weight_setting panel
+            for cat in self.game.numeric_categories: #Construct weight-setting panel
                 entry_panel = tk.Frame(self.rank_box_frame, relief=tk.RAISED)
                 entry_panel.pack(side=tk.LEFT)
                 
@@ -382,7 +363,7 @@ def get_scouting_graph_data(match_data, red_and_blue, num_margins=None):
     def get_one_side_margins():
         return (num_margins // 2 - 1) if red_and_blue else num_margins
     
-    def get_margin(match): #Get rid of this come un-kludge day
+    def get_margin(match):
         """Return the margin of the match's scores. Matches blue wins in have a negative margin."""
         return match
         
@@ -494,7 +475,7 @@ class GraphDataPanel(tk.Frame): #clean up
             else:
                 self.canvas.create_line(x, tot_height, x, top, fill = light_gray)
         self.canvas.create_line(0, tot_height, get_x(num_margins / 2 + 5), tot_height)
-        self.canvas.create_line(0, get_y(1.0), get_x(num_margins / 2 + 5), get_y(1.0))#, fill = light_gray)
+        self.canvas.create_line(0, get_y(1.0), get_x(num_margins / 2 + 5), get_y(1.0))
         self.canvas.create_line(0, get_y(0.75), get_x(num_margins / 2 + 5), get_y(0.75), fill = light_gray)
         self.canvas.create_line(0, get_y(0.5), get_x(num_margins / 2 + 5), get_y(0.5), fill = light_gray)
         self.canvas.create_line(0, get_y(0.25), get_x(num_margins / 2 + 5), get_y(0.25), fill = light_gray)

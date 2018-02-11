@@ -11,4 +11,4 @@ class Category:
         self.get_distr_from_scouting = get_distr_from_scouting
         
 def normal_get_distr_from_scouting(team_scouting):
-    
+    pass
