@@ -61,7 +61,7 @@ class ZScoutFrame(tk.Frame):
             if self.year == '2017':
                 self.m_wid = 1200
             else:
-                self.m_wid = 600
+                self.m_wid = 1200
             self.game = gms.GAMES_FROM_YEARS[self.year]
 
             self.raw_scouting = sdg.get_raw_scouting_data(self.comp)
@@ -69,8 +69,8 @@ class ZScoutFrame(tk.Frame):
             self.contrs = gms.contrs(self.raw_scouting, self.game)
             self.averages = gms.averages_from_contrs(self.contrs)
             scouting_cats = self.raw_scouting[list(self.raw_scouting.keys())[0]][0][1].keys()
-            self.categories = [cat for cat in self.game.categories if cat in scouting_cats] #intersection
-            self.numeric_cats = [cat for cat in self.game.numeric_categories if cat in scouting_cats]
+            self.categories = gms.get_cats(scouting_cats, self.game.categories)
+            self.numeric_cats = gms.get_cats(scouting_cats, self.game.numeric_categories, numeric=True)
 #            print(self.categories)
             self.teams = list(self.contrs.keys())
             
@@ -82,6 +82,8 @@ class ZScoutFrame(tk.Frame):
         def config_teams_frame():
             self.teams.sort(key=lambda t: int(t[3:]))
             num_in_chunk = 10
+            
+            self.teams_text.delete('1.0', tk.END)
             self.teams_text.insert(tk.INSERT, '\n')
             self.teams_text.insert(tk.INSERT, ' ' * (3*num_in_chunk - 3 + 10) + 'Teams:\n')
 
@@ -226,7 +228,7 @@ class ZScoutFrame(tk.Frame):
             raw_team_scouting = self.raw_scouting.get(team, []) #Scouting for this team
             scouting_string_list = [get_column_string()]
             
-            lens = []
+            lens = [len(scouting_string_list[0])] #start with len of column string
             for match, line_data in raw_team_scouting:
                 string = get_match_scouting_string(match, line_data)
                 lens.append(len(string))
@@ -347,7 +349,7 @@ def get_scouting_graph_data(match_data, red_and_blue, num_margins=None):
     def get_num_margins(max_red_margin, max_blue_margin):
             if num_margins == None:
                 result = None
-                result = max(max_red_margin, max_blue_margin)#*2 + 1
+                result = max(max_red_margin, max_blue_margin)
                 for tier in MARGIN_TIERS:#(TWO_SIDE_MARGIN_TIERS if red_and_blue else ONE_SIDE_MARGIN_TIERS):
                     if result <= tier:
                         result = tier*2+1 if red_and_blue else tier

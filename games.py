@@ -82,6 +82,30 @@ def steamworks_process_scouting(scouting):
         result[team] = matches
     return result
 
+def powerup_process_match(match):
+    match = match.copy()
+    endgame_action = match.pop('endgame_action')
+    match['climbing'] = int(endgame_action == 0) #climbing is action 0
+    match['parking'] =int(endgame_action == 1) #parking is action 1
+    return match
+
+def powerup_process_scouting(scouting):
+    result = {}
+    for team in scouting:
+        matches = []
+        for match in scouting[team]:
+            matches.append((match[0], powerup_process_match(match[1])))
+        result[team] = matches
+    return result
+
+def get_cats(scouting_cats, game_cats, numeric=False):
+    if len(game_cats) == 0:
+        result = scouting_cats[:]
+        if numeric and 'comments' in result:
+            result.remove('comments')
+        return result
+    return [cat for cat in game_cats if cat in scouting_cats] #intersection
+
 steamworks_cats = ['auton_lowgoal',
                    'auton_highgoal',
                    'auton_gears',
@@ -93,6 +117,7 @@ steamworks_cats = ['auton_lowgoal',
                    'rgt_auton_gears',
                    'crossed_baseline',
                    'pickup_gears',
+                   'dropped_gears',
                    'teleop_lowgoal',
                    'teleop_highgoal',
                    'teleop_gears',
@@ -101,6 +126,19 @@ steamworks_cats = ['auton_lowgoal',
                    'comments']
 STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting)
 
-POWER_UP = Game([], [], None)
+powerup_cats = ['auton_ci_switch',
+                'auton_ci_scale',
+                'auton_cube_count',
+                'cube_count',
+                'cube_switch',
+                'cube_scale',
+                'cube_vault',
+                'fouls',
+                'tech_fouls',
+                'climbing',
+                'hanging',
+                'helping_robot',
+                'comments']
+POWER_UP = Game(powerup_cats, powerup_cats[:-1], None, powerup_process_scouting)
 
 GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}
