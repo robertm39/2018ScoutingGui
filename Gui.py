@@ -29,8 +29,12 @@ class ZScoutFrame(tk.Frame):
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
         
         self.state = sd.SaveData('Gui_state')
+        self.init_state()
         
         self.initUI()
+    
+    def init_state(self):
+        self.state.non_override_write('summaries', {})
     
     def initUI(self):
         """Initialize the user interface."""
@@ -205,6 +209,7 @@ class ZScoutFrame(tk.Frame):
             self.team_summary_inner_frame = tk.Frame(self.team_summary_canvas_frame, relief=tk.RAISED, borderwidth=1)
             self.team_summary_inner_frame.pack(side=tk.TOP)
             
+            #Make scouting data viewer
             scouting_text_scrollbar = tk.Scrollbar(self.team_summary_inner_frame, orient=tk.HORIZONTAL)
             scouting_text_canvas = tk.Canvas(self.team_summary_inner_frame, xscrollcommand=scouting_text_scrollbar.set, width=1000)
             scouting_text_canvas.pack(side=tk.TOP, fill=tk.NONE)
@@ -217,6 +222,25 @@ class ZScoutFrame(tk.Frame):
             scouting_text_scrollbar.config(command=scouting_text_canvas.xview)
             
             scouting_text_canvas.create_window((0, 0), window=scouting_text_pane, anchor='nw', tags='scouting_text_pane')
+            
+            #Make editable summary pane
+            
+            key = self.state.comp, team
+            def save_summary(summary):
+#                print('click')
+                string = summary.get("1.0",'end-1c')
+                print(string)
+                print(key)
+                self.state.summaries[key] = string
+                self.state.save()
+            
+            scouting_editable_summary = tk.Text(self.team_summary_inner_frame, height=5)
+            prev_summary = self.state.summaries.get(key, '')
+            scouting_editable_summary.insert('1.0', prev_summary)
+            scouting_editable_summary.pack(side=tk.TOP)
+            
+            save_button = tk.Button(self.team_summary_inner_frame, text='Save', command=lambda *args:save_summary(scouting_editable_summary))
+            save_button.pack(side=tk.TOP)
             
             raw_team_scouting = self.state.raw_scouting.get(team, []) #Scouting for this team
             scouting_string_list = [get_column_string()]
