@@ -8,7 +8,7 @@ Created on Sun Feb 18 14:13:41 2018
 import pickle as pkl
 
 import encode as ec
-high=999999999999999
+high=99999999
 
 file = open('encoded.txt', 'rb')
 code = pkl.load(file)
