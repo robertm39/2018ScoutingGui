@@ -20,3 +20,17 @@ def encode(message, seed=0, low=0, high=100, decode=False):
 
 def decode(message, seed=0, low=0, high=100):
     return encode(message, seed=seed, low=low, high=high, decode=True)
+
+def h_encode(message, seed=0, low=0, high=100):#, decode=False):
+    random.seed(seed)
+    encoded = []
+    for char in message:
+        encoded.append(ord(char) + random.randint(low, high))
+    return (encoded)
+
+def h_decode(encoded, seed=0, low=0, high=100):
+    random.seed(seed)
+    decoded = []
+    for num in encoded:
+        decoded.append(chr(num - random.randint(low, high)))
+    return ''.join(decoded)

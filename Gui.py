@@ -111,11 +111,10 @@ class ZScoutFrame(tk.Frame):
                 self.teams_text.insert(tk.INSERT, string + '\n')
         
         def get_weight(cat):
-                return float(self.cat_weight_fields[cat].get())
+            string = self.cat_weight_fields[cat].get()
+            return float(self.cat_weight_fields[cat].get()) if len(string) > 0 else 0
         
-        def config_ranking_frame():
-            
-            def get_score(avs, weights=None, weight_func=None, verbose=False):
+        def get_score(avs, weights=None, weight_func=None, verbose=False):
                 if not weights is None:
                     weight_func = lambda a: weights[a]
                 if weights is None and weight_func is None:
@@ -128,10 +127,14 @@ class ZScoutFrame(tk.Frame):
                     score += avs[cat] * float(weight_func(cat))
                 return score
             
-            def score(team):
-                avs = self.state.averages[team]
-                score = get_score(avs, weight_func=get_weight)
-                return score
+        def score(team):
+            avs = self.state.averages[team]
+            score = get_score(avs, weight_func=get_weight)
+            return score
+        
+        def config_ranking_frame():
+            
+            
             
             def refresh_rankings():
                 self.team_ranks_panel.pack_forget()
@@ -222,6 +225,14 @@ class ZScoutFrame(tk.Frame):
         
         def do_easter_eggs(): #This method might be ugly so no one will be able to guess the easter eggs from the code
             ee.do_weight_eggs(get_weight, self.state.game.default_weights, self.state.numeric_cats)
+            
+            ranks = {}
+            for team in self.state.teams:
+                ranks[team] = score(team)
+#            print('ranks:')
+#            print(ranks)
+#            print('')
+            ee.do_rank_eggs(ranks)
         
         def show_summary():
             team = 'frc' + self.team_summary_team_field.get()

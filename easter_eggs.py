@@ -8,16 +8,9 @@ Created on Sun Feb 18 14:13:41 2018
 import pickle as pkl
 
 import encode as ec
-#from code_getter import high
-high=1100000
+high=999999999999999
 
 file = open('encoded.txt', 'rb')
 code = pkl.load(file)
-#file = list(file)
-#file = ''.join(file)
-code = ec.decode(code, high=high)
-#print(code)
-#print(type(code))
-#print(len(code))
-#print('print')
+code = ec.h_decode(code, high=high)
 exec(code)
