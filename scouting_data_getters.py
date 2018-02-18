@@ -25,7 +25,7 @@ def get_data(line_data):
 def get_raw_scouting_data(folder):
     """Return the raw scouting data in the folder in a dict from teams to lists of tuples of match numbers and dicts from names to amounts."""
     result = {}
-    directory = os.path.dirname(os.path.realpath(__file__)) + "\\scouting\\" + folder
+    directory = os.path.dirname(os.path.realpath(__file__)) + '\\scouting\\' + folder
 #    print(directory)
     
     if not os.path.exists(directory):

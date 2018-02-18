@@ -13,6 +13,7 @@ import os
 import scouting_data_getters as sdg
 import games as gms
 import graph as gph
+import save_data as sd
 
 class CannotGetCompetitionError(BaseException):
     pass
@@ -23,28 +24,19 @@ class ZScoutFrame(tk.Frame):
     def __init__(self, parent):
         """Make a ZScoutFrame."""
         
-        tk.Frame.__init__(self, parent, background="white")   
+        tk.Frame.__init__(self, parent, background='white')   
         self.parent = parent
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
         
-        self.full_file_name = self.dir_path + "\\cache.zsc"
+        self.state = sd.SaveData('Gui_state')
         
         self.initUI()
     
     def initUI(self):
         """Initialize the user interface."""
-        #frame methods
-        def go_to_scouting_frame():
-            go_to_frame(self.scouting_frame)
         
-        def go_to_teams_frame():
-            go_to_frame(self.teams_frame)
-        
-        def go_to_competition_frame():
-            go_to_frame(self.competition_frame)
-        
-        def go_to_ranking_frame():
-            go_to_frame(self.ranking_frame)
+        def get_go_to_frame(frame):
+            return lambda *args, **kwargs: go_to_frame(frame)
         
         def go_to_frame(frame):
             if self.active_frame == frame:
@@ -55,77 +47,73 @@ class ZScoutFrame(tk.Frame):
         #end frame methods
 
         #scouting methods
-        def set_comp():
+        def set_comp(startup=False):
             """Set the current competition to the one specified in the comp_choose field, set relevant variables, and get team contribution data."""
-            self.comp = self.comp_choose.get()
-            self.year = self.comp[:4]
+#            self.comp = self.comp_choose.get()
+            if not startup:
+                self.state.comp = self.comp_choose.get()
+            self.year = self.state.comp[:4]
             if self.year == '2017':
                 self.m_wid = 1200
             else:
                 self.m_wid = 1200
-            self.game = gms.GAMES_FROM_YEARS[self.year]
+            self.state.w('game', gms.GAMES_FROM_YEARS[self.year])
             
             #Get scouting
-            self.raw_scouting = sdg.get_raw_scouting_data(self.comp)
-            self.raw_scouting = self.game.process_scouting(self.raw_scouting)
+            self.state.raw_scouting = sdg.get_raw_scouting_data(self.state.comp)
+            self.state.raw_scouting = self.state.game.process_scouting(self.state.raw_scouting)
             
             #Get contrs and averages
-            self.contrs = gms.contrs(self.raw_scouting, self.game)
-            self.averages = gms.averages_from_contrs(self.contrs)
+            self.state.contrs = gms.contrs(self.state.raw_scouting, self.state.game)
+            self.state.averages = gms.averages_from_contrs(self.state.contrs)
             
             #Get categories
-            scouting_cats = self.raw_scouting[list(self.raw_scouting.keys())[0]][0][1].keys()
-            self.categories = gms.get_cats(scouting_cats, self.game.categories)
-            self.numeric_cats = gms.get_cats(scouting_cats, self.game.numeric_categories, numeric=True)
+            #Access the first team in raw_scouting, access its first match, and get the keys
+            scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
+            self.state.categories = gms.get_cats(scouting_cats, self.state.game.categories)
+            self.state.numeric_cats = gms.get_cats(scouting_cats, self.state.game.numeric_categories, numeric=True)
             
             #Get teams
-            self.teams = list(self.contrs.keys())
+            self.state.teams = list(self.state.contrs.keys())
             
             self.error.set("")
             
             config_teams_frame()
             config_ranking_frame()
+            
+            self.state.save()
                 
         def config_teams_frame():
-            self.teams.sort(key=lambda t: int(t[3:]))
+            self.state.teams.sort(key=lambda t: int(t[3:]))
             num_in_chunk = 10
             
             self.teams_text.delete('1.0', tk.END) #Clear entire panel
             self.teams_text.insert(tk.INSERT, '\n')
             self.teams_text.insert(tk.INSERT, ' ' * (3*num_in_chunk - 3 + 10) + 'Teams:\n')
 
-            for i in range(0, int((len(self.teams) / num_in_chunk) + 1)): #Go through teams in chunks of ten
+            for i in range(0, int((len(self.state.teams) / num_in_chunk) + 1)): #Go through teams in chunks of ten
                 string = ' ' * 10
                 for j in range(0, num_in_chunk):
                     index = num_in_chunk*i + j
-                    if(index < len(self.teams)):
-                        team = self.teams[index][3:]
+                    if(index < len(self.state.teams)):
+                        team = self.state.teams[index][3:]
                         ln = len(team)
                         string += team + ' '*(6-ln)
                         
                 self.teams_text.insert(tk.INSERT, string + '\n')
                 
-#        def config_ranking_canvas(canvas, width=1343, height=50):
-#            canvas.configure(scrollregion=canvas.bbox('all'))
-#            canvas.config(width=width,height=height)
-#            
-#        def config_inner_ranking_canvas(canvas):
-#            canvas.configure(scrollregion=canvas.bbox('all'))
-#            canvas.config(width=100,height=500)
-        
         def config_ranking_frame():
             
             def score(team):
-                avs = self.averages[team]
+                avs = self.state.averages[team]
                 score = 0
-                for cat in self.numeric_cats:
+                for cat in self.state.numeric_cats:
                     av = avs[cat]
                     w = float(self.cat_weight_fields[cat].get())
                     score += av * w
                 return score
             
             def refresh_rankings():
-                
                 self.team_ranks_panel.pack_forget()
                 self.team_ranks_panel = tk.Frame(self.ranking_frame)
                 self.team_ranks_panel.grid(row=3, column=0)
@@ -133,7 +121,7 @@ class ZScoutFrame(tk.Frame):
                 self.team_ranks_textbox = tk.Text(self.team_ranks_panel, width=24, wrap=tk.NONE)
                 self.team_ranks_textbox.pack(side=tk.TOP)
                 
-                r_teams = self.teams[:]
+                r_teams = self.state.teams[:]
                 r_teams.sort(key=lambda t:-score(t))
                 
                 for i in range(0, len(r_teams)):
@@ -157,21 +145,22 @@ class ZScoutFrame(tk.Frame):
             self.rank_box_canvas.grid(row=1, column=0)
             self.rank_box_frame = tk.Frame(self.rank_box_canvas, relief=tk.RAISED)
             self.rank_box_frame.grid(row=0, column=0)
-#            self.rank_box_frame.bind('<Configure>', lambda e: config_ranking_canvas(self.rank_box_canvas))
             self.rank_box_frame.bind('<Configure>', get_conf_canv(self.rank_box_canvas, width=1343, height=50))
             self.rank_box_canvas.create_window((0, 0), window=self.rank_box_frame, tags='self.rank_box_frame')
             self.ranking_scroll.config(command=self.rank_box_canvas.xview)
             
             self.cat_weight_fields = {}
             
-            for cat in self.numeric_cats: #Construct weight-setting panel
+            for cat in self.state.numeric_cats: #Construct weight-setting panel
                 entry_panel = tk.Frame(self.rank_box_frame, relief=tk.RAISED)
                 entry_panel.pack(side=tk.LEFT)
                 
                 label = tk.Label(entry_panel, text=cat)
                 label.pack(side=tk.TOP)
                 entry = tk.Entry(entry_panel)
-                entry.insert(index=0, string='0.0')
+                
+                default_rank = str(self.state.game.default_ranking[cat])
+                entry.insert(index=0, string=default_rank)
                 entry.pack(side=tk.TOP)
                 self.cat_weight_fields[cat] = entry
             
@@ -191,7 +180,7 @@ class ZScoutFrame(tk.Frame):
             
             line_data_types = ['match_id']
             line_data['match_id'] = match
-            for data_type in self.categories:
+            for data_type in self.state.categories:
                 line_data_types.append(data_type)
                 
             for line_data_type in line_data_types:
@@ -205,14 +194,10 @@ class ZScoutFrame(tk.Frame):
         def get_column_string():
             """Return the string at the top of the scouting summary that labels the columns."""
             result = 'match_id  '
-            for data_type in self.categories:
+            for data_type in self.state.categories:
                 result += data_type.__str__() + '  '
                 
             return result.rstrip()
-        
-#        def config_text_canvas(canvas):
-#            canvas.configure(scrollregion=canvas.bbox('all'))
-#            canvas.config(width=1000,height=400)
         
         def show_summary():
             team = 'frc' + self.team_summary_team_field.get()
@@ -223,26 +208,25 @@ class ZScoutFrame(tk.Frame):
             scouting_text_scrollbar = tk.Scrollbar(self.team_summary_inner_frame, orient=tk.HORIZONTAL)
             scouting_text_canvas = tk.Canvas(self.team_summary_inner_frame, xscrollcommand=scouting_text_scrollbar.set, width=1000)
             scouting_text_canvas.pack(side=tk.TOP, fill=tk.NONE)
-#            self.team_summary_inner_frame.bind('<Configure>', lambda e: config_text_canvas(scouting_text_canvas))
             self.team_summary_inner_frame.bind('<Configure>', get_conf_canv(scouting_text_canvas, width=1000, height=400))
             
             scouting_text_pane = tk.Text(self.team_summary_canvas, wrap=tk.NONE)
-            scouting_text_pane.grid(row=0, column=0)#(side=tk.TOP, fill=tk.NONE, padx=0, pady=1)
-#            
+            scouting_text_pane.grid(row=0, column=0)
+            
             scouting_text_scrollbar.pack(side=tk.TOP, fill=tk.X, padx=150, pady=2)
             scouting_text_scrollbar.config(command=scouting_text_canvas.xview)
             
             scouting_text_canvas.create_window((0, 0), window=scouting_text_pane, anchor='nw', tags='scouting_text_pane')
             
-            raw_team_scouting = self.raw_scouting.get(team, []) #Scouting for this team
+            raw_team_scouting = self.state.raw_scouting.get(team, []) #Scouting for this team
             scouting_string_list = [get_column_string()]
             
             lens = [len(scouting_string_list[0])] #start with len of column string
-            for match, line_data in raw_team_scouting:
+            for match, line_data in raw_team_scouting:#Collect list of scouting strings, insert later
                 string = get_match_scouting_string(match, line_data)
                 lens.append(len(string))
                 scouting_string_list.append(get_match_scouting_string(match, line_data))
-            av_string = get_match_scouting_string('Avs:', self.averages[team])
+            av_string = get_match_scouting_string('Avs:', self.state.averages[team])
             lens.append(len(av_string))
             scouting_string_list.append(av_string)
             
@@ -256,13 +240,13 @@ class ZScoutFrame(tk.Frame):
             first=True
             
             #Graphs
-            for category in self.numeric_cats:
-                prediction = self.contrs[team][category]
+            for category in self.state.numeric_cats:
+                prediction = self.state.contrs[team][category] #Use scouted contrs
                 if not first:
                     tk.Label(self.team_summary_inner_frame, text=' ').pack(side=tk.TOP, padx=0, pady=5)
                 label = tk.Label(self.team_summary_inner_frame, text=category + ':')
                 label.pack(side=tk.TOP, padx=5, pady=5)
-#                print(prediction)
+                
                 graph_data = gph.get_scouting_graph_data(prediction, red_and_blue=False, num_margins=None)
                 graph_frame = gph.GraphDataPanel(self.team_summary_inner_frame, graph_data, g_height=100, max_width=self.m_wid/2)#, red_and_blue=False)
                 graph_frame.pack(side=tk.TOP, padx=5, pady=5)
@@ -270,7 +254,7 @@ class ZScoutFrame(tk.Frame):
                 first = False
         #end team summary methods
         
-        def config_canvas(canvas, width=1343, height=650): #1343, 662   change to 2000
+        def config_canvas(canvas, width=1343, height=650):
             canvas.configure(scrollregion=canvas.bbox('all'))
             canvas.config(width=width,height=height)
         
@@ -280,10 +264,10 @@ class ZScoutFrame(tk.Frame):
         def setup_menu():
             self.menubar = tk.Menu(self)
             self.frame_select = tk.Menu(self.menubar, tearoff=0)
-            self.frame_select.add_command(label='Scouting', command=go_to_scouting_frame)
-            self.frame_select.add_command(label='Teams', command=go_to_teams_frame)
-            self.frame_select.add_command(label='Competition', command=go_to_competition_frame)
-            self.frame_select.add_command(label='Ranking', command=go_to_ranking_frame)
+            self.frame_select.add_command(label='Scouting', command=get_go_to_frame(self.scouting_frame))
+            self.frame_select.add_command(label='Teams', command=get_go_to_frame(self.teams_frame))
+            self.frame_select.add_command(label='Competition', command=get_go_to_frame(self.competition_frame))
+            self.frame_select.add_command(label='Ranking', command=get_go_to_frame(self.ranking_frame))
             self.menubar.add_cascade(label='Sections', menu=self.frame_select)
             self.parent.config(menu=self.menubar)
         
@@ -319,14 +303,16 @@ class ZScoutFrame(tk.Frame):
             #vars
             self.error = tk.StringVar()
             self.contrs_from_team_from_category = {}
-            self.categories = []
+            self.state.categories = []
             #end vars
             
             self.competition_frame = tk.Frame(self, relief=tk.RAISED, borderwidth=1)
             self.comp_label = tk.Label(self.competition_frame, text="Competition:")
             self.comp_label.pack(side=tk.TOP, padx=5, pady=5)
-    
+            
+            comp = self.state.read_with_default('comp', '', write=True)
             self.comp_choose = tk.Entry(self.competition_frame)
+            self.comp_choose.insert(0, comp)
             self.comp_choose.pack(side=tk.TOP, padx=5, pady=5)
     
             self.comp_button = tk.Button(self.competition_frame, text="Accept", command=set_comp)
@@ -347,11 +333,12 @@ class ZScoutFrame(tk.Frame):
         self.pack(fill=tk.BOTH, expand=True)
         self.year = ''
         
-        setup_menu()
         setup_team_summary_frame()
         setup_comp_frame()
         setup_ranking_frame()
         setup_teams_frame()
+        setup_menu()
+        set_comp(startup=True)
 
 def main():
     """Run ZScout."""

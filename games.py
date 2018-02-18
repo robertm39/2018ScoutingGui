@@ -6,12 +6,22 @@ Created on Sun Jan 21 13:38:09 2018
 """
 
 class Game:
-    def __init__(self, categories, numeric_categories, get_scouting_from_match, process_scouting=lambda s:s):
+    def __init__(self,
+                 categories,
+                 numeric_categories,
+                 get_scouting_from_match,
+                 process_scouting=lambda s:s,
+                 default_ranking={}):
         self.categories = categories
         self.numeric_categories = numeric_categories
         self.get_scouting_from_match = get_scouting_from_match
         self.process_scouting = process_scouting
-
+        
+        self.default_ranking = default_ranking.copy()
+        for category in self.numeric_categories:
+            if not category in self.default_ranking:
+                self.default_ranking[category] = 0
+                
 def put_in_histogram(contrs, upper_limit = False, verbose=False):
     result = {}
     tot = 0
@@ -67,37 +77,6 @@ def team_contrs(team_scouting, game, pr=False):
         
     return contrs
 
-def steamworks_process_match(match):
-    if 'caught_rope' in match:
-        match = match.copy()
-        match['caught_rope'] |= match['hanging']
-    return match
-
-def steamworks_process_scouting(scouting):
-    result = {}
-    for team in scouting:
-        matches = []
-        for match in scouting[team]:
-            matches.append((match[0], steamworks_process_match(match[1])))
-        result[team] = matches
-    return result
-
-def powerup_process_match(match):
-    match = match.copy()
-    endgame_action = match.pop('endgame_action')
-    match['climbing'] = int(endgame_action == 0) #climbing is action 0
-    match['parking'] =int(endgame_action == 1) #parking is action 1
-    return match
-
-def powerup_process_scouting(scouting):
-    result = {}
-    for team in scouting:
-        matches = []
-        for match in scouting[team]:
-            matches.append((match[0], powerup_process_match(match[1])))
-        result[team] = matches
-    return result
-
 def get_cats(scouting_cats, game_cats, numeric=False):
     if len(game_cats) == 0:
         result = scouting_cats[:]
@@ -105,6 +84,24 @@ def get_cats(scouting_cats, game_cats, numeric=False):
             result.remove('comments')
         return result
     return [cat for cat in game_cats if cat in scouting_cats] #intersection
+
+def process_scouting_by_match(scouting, process_match):
+    result = {}
+    for team in scouting:
+        matches = []
+        for match in scouting[team]:
+            matches.append((match[0], process_match(match[1])))
+        result[team] = matches
+    return result
+
+def steamworks_process_match(match):
+    if 'caught_rope' in match:
+        match = match.copy()
+        match['caught_rope'] |= match['hanging']
+    return match
+
+def steamworks_process_scouting(scouting):
+    return process_scouting_by_match(scouting, steamworks_process_match)
 
 steamworks_cats = ['auton_lowgoal',
                    'auton_highgoal',
@@ -124,7 +121,34 @@ steamworks_cats = ['auton_lowgoal',
                    'hanging',
                    'caught_rope',
                    'comments']
-STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting)
+steamworks_rankings = {'auton_lowgoal':1,
+                       'auton_highgoal':3,
+                       'auton_gears':30,
+                       'try_lft_auton_gears':0,
+                       'try_cen_auton_gears':0,
+                       'try_rgt_auton_gears':0,
+                       'lft_auton_gears':30,
+                       'cen_auton_gears':30,
+                       'rgt_auton_gears':30,
+                       'crossed_baseline':5,
+                       'pickup_gears':0,
+                       'dropped_gears':0,
+                       'teleop_lowgoal':0.3333,
+                       'teleop_highgoal':1,
+                       'teleop_gears':20,
+                       'hanging':50,
+                       'caught_rope':0}
+STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting, steamworks_rankings)
+
+def powerup_process_match(match):
+    match = match.copy()
+    endgame_action = match.pop('endgame_action')
+    match['climbing'] = int(endgame_action == 0) #climbing is action 0
+    match['parking'] =int(endgame_action == 1) #parking is action 1
+    return match
+
+def powerup_process_scouting(scouting):
+    return process_scouting_by_match(scouting, powerup_process_match)
 
 powerup_cats = ['auton_ci_switch',
                 'auton_ci_scale',
