@@ -114,6 +114,14 @@ class ZScoutFrame(tk.Frame):
             string = self.cat_weight_fields[cat].get()
             return float(self.cat_weight_fields[cat].get()) if len(string) > 0 else 0
         
+        def get_default_ranks():
+            weights = self.state.game.default_weights
+            teams = self.state.teams
+            result = {}
+            for team in teams:
+                result[team] = get_score(self.state.averages[team], weights=weights)
+            return result
+        
         def get_score(avs, weights=None, weight_func=None, verbose=False):
                 if not weights is None:
                     weight_func = lambda a: weights[a]
@@ -133,8 +141,6 @@ class ZScoutFrame(tk.Frame):
             return score
         
         def config_ranking_frame():
-            
-            
             
             def refresh_rankings():
                 self.team_ranks_panel.pack_forget()
@@ -232,7 +238,7 @@ class ZScoutFrame(tk.Frame):
 #            print('ranks:')
 #            print(ranks)
 #            print('')
-            ee.do_rank_eggs(ranks)
+            ee.do_rank_eggs(ranks, get_default_ranks())
         
         def show_summary():
             team = 'frc' + self.team_summary_team_field.get()
