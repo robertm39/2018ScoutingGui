@@ -11,16 +11,16 @@ class Game:
                  numeric_categories,
                  get_scouting_from_match,
                  process_scouting=lambda s:s,
-                 default_ranking={}):
+                 default_weights={}):
         self.categories = categories
         self.numeric_categories = numeric_categories
         self.get_scouting_from_match = get_scouting_from_match
         self.process_scouting = process_scouting
         
-        self.default_ranking = default_ranking.copy()
+        self.default_weights = default_weights.copy()
         for category in self.numeric_categories:
-            if not category in self.default_ranking:
-                self.default_ranking[category] = 0
+            if not category in self.default_weights:
+                self.default_weights[category] = 0
                 
 def put_in_histogram(contrs, upper_limit = False, verbose=False):
     result = {}
@@ -98,6 +98,7 @@ def steamworks_process_match(match):
     if 'caught_rope' in match:
         match = match.copy()
         match['caught_rope'] |= match['hanging']
+    match['jank_fouls'] = 0
     return match
 
 def steamworks_process_scouting(scouting):

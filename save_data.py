@@ -14,9 +14,9 @@ class SaveData(object):
         directory = os.path.dirname(os.path.realpath(__file__)) + '\\save\\'
         self.path = directory + name + '.save'
         if not os.path.exists(self.path):
-            print('making folder')
+#            print('making folder')
             os.makedirs(directory)
-            print('opening file')
+#            print('opening file')
             file = open(self.path, 'w')
             file.close()
             self.save()

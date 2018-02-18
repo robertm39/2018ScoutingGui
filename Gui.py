@@ -15,8 +15,10 @@ import games as gms
 import graph as gph
 import save_data as sd
 
-class CannotGetCompetitionError(BaseException):
-    pass
+import easter_eggs as ee
+
+#class CannotGetCompetitionError(BaseException):
+#    pass
 
 class ZScoutFrame(tk.Frame):
     """The frame the ZScout Gui is in."""
@@ -74,12 +76,13 @@ class ZScoutFrame(tk.Frame):
                 
                 #Get categories
                 #Access the first team in raw_scouting, access its first match, and get the keys
-                scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
+                self.state.teams = list(self.state.contrs.keys())
+#                scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
+                scouting_cats = self.state.raw_scouting[self.state.teams[0]][0][1].keys()
                 self.state.categories = gms.get_cats(scouting_cats, self.state.game.categories)
                 self.state.numeric_cats = gms.get_cats(scouting_cats, self.state.game.numeric_categories, numeric=True)
                 
                 #Get teams
-                self.state.teams = list(self.state.contrs.keys())
                 
                 self.error.set("")
                 
@@ -106,16 +109,28 @@ class ZScoutFrame(tk.Frame):
                         string += team + ' '*(6-ln)
                         
                 self.teams_text.insert(tk.INSERT, string + '\n')
-                
+        
+        def get_weight(cat):
+                return float(self.cat_weight_fields[cat].get())
+        
         def config_ranking_frame():
+            
+            def get_score(avs, weights=None, weight_func=None, verbose=False):
+                if not weights is None:
+                    weight_func = lambda a: weights[a]
+                if weights is None and weight_func is None:
+                    weight_func = lambda a:0
+                
+                score = 0
+                for cat in self.state.numeric_cats:
+                    if verbose:
+                        print(avs[cat], float(weight_func(cat)))
+                    score += avs[cat] * float(weight_func(cat))
+                return score
             
             def score(team):
                 avs = self.state.averages[team]
-                score = 0
-                for cat in self.state.numeric_cats:
-                    av = avs[cat]
-                    w = float(self.cat_weight_fields[cat].get())
-                    score += av * w
+                score = get_score(avs, weight_func=get_weight)
                 return score
             
             def refresh_rankings():
@@ -138,6 +153,7 @@ class ZScoutFrame(tk.Frame):
                     self.team_ranks_textbox.insert(tk.INSERT, chars=string)
                 
                 self.team_ranks_textbox.config(state=tk.DISABLED, height=30)
+                do_easter_eggs()
                     
             for child in self.ranking_frame.winfo_children():
                 child.destroy()
@@ -164,8 +180,8 @@ class ZScoutFrame(tk.Frame):
                 label.pack(side=tk.TOP)
                 entry = tk.Entry(entry_panel)
                 
-                default_rank = str(self.state.game.default_ranking[cat])
-                entry.insert(index=0, string=default_rank)
+                default_weight = str(self.state.game.default_weights[cat])
+                entry.insert(index=0, string=default_weight)
                 entry.pack(side=tk.TOP)
                 self.cat_weight_fields[cat] = entry
             
@@ -204,6 +220,9 @@ class ZScoutFrame(tk.Frame):
                 
             return result.rstrip()
         
+        def do_easter_eggs(): #This method might be ugly so no one will be able to guess the easter eggs from the code
+            ee.do_weight_eggs(get_weight, self.state.game.default_weights, self.state.numeric_cats)
+        
         def show_summary():
             team = 'frc' + self.team_summary_team_field.get()
             self.team_summary_inner_frame.pack_forget()
@@ -228,10 +247,8 @@ class ZScoutFrame(tk.Frame):
             
             key = self.state.comp, team
             def save_summary(summary):
-#                print('click')
-                string = summary.get("1.0",'end-1c')
-#                print(string)
-#                print(key)
+                string = summary.get("1.0",'end-1c') #Get all the text
+                do_easter_eggs(string)
                 self.state.summaries[key] = string
                 self.state.save()
             
@@ -370,7 +387,7 @@ def main():
     root = tk.Tk()
     root.geometry('350x250+300+300')
     tk.app = ZScoutFrame(root)
-    root.mainloop()  
+    root.mainloop()
 
 if __name__ == '__main__':
     main()
