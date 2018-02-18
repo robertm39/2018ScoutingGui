@@ -1,0 +1,68 @@
+match_id,team_id,crossed_baseline,try_lft_auton_gears,try_cen_auton_gears,try_rgt_auton_gears,lft_auton_gears,cen_auton_gears,rgt_auton_gears,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,dropped_gears,teleop_highgoal,teleop_lowgoal,caught_rope,hanging,comments
+2,5704,False,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,
+3,1502,False,False,False,False,False,True,False,0,0,0,False,0,0,0,True,False,
+4,3536,False,False,True,False,False,False,False,0,1,0,False,2,0,0,True,True,
+5,4998,True,False,False,False,False,False,False,0,0,1,False,1,0,0,True,True,
+6,5703,False,False,True,False,False,False,False,0,0,2,False,1,0,0,True,False,
+7,5704,False,False,False,False,False,False,False,0,0,0,False,1,0,0,True,False,
+8,4840,False,False,False,True,False,False,False,0,0,0,False,0,0,0,False,False,
+9,5530,False,False,False,False,False,True,False,0,0,1,False,2,0,0,True,True,
+10,5502,False,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+11,6591,False,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,It fell over
+12,5203,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,False,
+13,302,True,False,False,False,False,False,False,0,0,1,False,1,0,0,True,True,
+14,2145,False,False,False,False,False,False,False,0,0,1,False,1,0,0,True,True,
+15,1502,False,False,False,False,False,True,False,0,0,1,False,1,0,0,True,True,
+16,3414,False,False,False,False,False,False,False,0,0,0,False,1,0,0,True,False,
+17,3568,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,False,
+18,2834,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+19,5238,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,False,
+20,302,False,False,False,False,False,True,False,0,0,2,False,0,10,0,True,True,
+21,5688,False,False,False,False,False,False,False,0,0,3,False,0,0,0,True,False,
+22,5238,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+23,6081,False,True,False,False,False,False,False,3,0,2,False,0,0,0,True,False,
+24,27,False,False,False,False,False,False,False,35,0,2,False,0,90,0,True,False,
+25,5538,False,False,False,False,False,False,False,0,0,0,False,0,0,0,True,False,
+26,4840,False,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,
+27,1,False,False,True,False,False,False,False,0,0,1,False,0,0,0,True,True,
+28,6591,False,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+29,201,False,False,False,True,False,False,False,0,0,3,False,0,0,0,True,True,
+30,51,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+31,470,True,False,False,False,True,True,True,0,0,3,False,0,0,0,True,True,
+32,5502,True,False,False,False,False,False,True,0,0,2,False,0,0,0,False,False,
+33,3568,True,False,False,True,False,False,False,0,0,1,False,1,0,0,True,True,
+34,3641,False,False,False,True,False,False,False,0,0,4,False,2,0,0,True,True,
+35,5697,False,False,False,True,False,False,False,0,0,2,False,0,0,0,True,True,
+36,830,False,False,False,True,False,False,False,0,0,3,False,0,0,0,True,True,
+37,4998,True,False,False,True,False,False,False,0,0,2,False,0,0,0,True,True,
+38,5238,False,False,False,True,False,False,False,0,0,3,False,0,0,0,True,True,
+39,3536,False,False,False,False,False,True,False,0,0,2,False,0,0,0,True,True,
+40,5697,False,False,True,False,False,False,False,0,0,1,False,1,0,0,True,True,
+41,1189,False,False,False,False,False,False,False,6,0,3,False,0,0,0,True,False,
+42,5523,True,False,False,False,False,False,False,0,0,0,False,0,0,0,True,False,kinda tries to defend
+43,5688,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,False,
+44,5538,True,False,False,False,False,False,False,0,0,2,False,0,0,0,False,False,
+45,5203,False,False,False,False,False,True,False,0,0,3,False,0,0,0,True,True,
+46,2612,True,False,False,False,False,False,True,0,0,3,False,0,0,0,True,True,
+47,5704,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+48,2145,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+49,302,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+50,27,True,False,False,False,False,False,False,0,0,0,False,0,18,0,True,True,
+51,1,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+52,6081,True,False,False,False,True,False,False,0,0,2,False,0,0,0,False,False,
+53,5695,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+54,4362,True,False,False,False,False,False,False,0,0,3,False,0,0,0,False,True,Overall a very solid robot
+55,830,False,False,False,False,False,False,True,0,0,2,False,1,0,0,False,True,"well, that match was close. Takes way too long to get gears"
+56,2834,True,False,False,False,False,True,False,0,0,2,True,1,0,0,True,True,"Somehow this robot has taken like 15 consecutive Ls, yet is still ranked higher than us. "
+57,5523,True,False,False,False,False,False,False,0,0,0,False,0,0,0,True,True,"They played a lot of defense, not good for much else though"
+58,5238,False,False,True,False,False,False,False,0,0,1,False,0,0,0,True,True,"it hung really fast, but had a lot of trouble getting gears "
+59,3707,True,False,False,False,False,False,True,0,0,1,False,0,0,0,True,True,"It tried to shoot i think, but overall was low key carried and easily pushed around"
+60,5703,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,"TBH was surprised it hung, this thing is MASSIVE"
+61,6591,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,once it got the rope it moved up pretty quickly
+62,470,True,False,False,True,False,False,False,0,0,3,False,0,0,0,True,True,pretty fast and does well collecting and getting the team gears.. also can climb well
+63,27,True,False,False,False,False,False,False,4,0,1,False,0,1,0,True,True,
+64,201,True,False,True,False,False,False,False,0,0,3,False,0,0,0,False,False,
+65,6081,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,"slow with climbing, if they had got the rope any later they wouldn't of made it"
+66,5704,True,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,stopped moving like 30 seconds in  but ended up going again after a while and then stopped moving again with like 30 seconds left. 
+67,2834,True,False,False,False,False,True,False,0,0,2,True,0,0,0,True,True,cool purple and green lights 10/10
+68,3641,False,False,False,False,False,False,False,0,0,2,True,0,0,0,True,True,it was pretty close to not making the hang and holding its own weight

@@ -1,0 +1,70 @@
+match_id,team_id,crossed_baseline,auton_gears,auton_techfouls,auton_fouls,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,teleop_highgoal,teleop_lowgoal,pickup_fuel,teleop_techfouls,teleop_fouls,hanging,defense,comments
+2,5204,False,False,0,0,0,0,2,False,0,0,False,0,0,True,1,might be 1 more gear
+3,3602,False,False,0,0,0,0,1,False,0,0,False,0,0,False,3,
+4,3603,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,didn't move in auton
+5,4327,True,False,0,0,0,0,0,False,0,0,False,0,0,True,1,"has gear mechanism, doesn't work "
+6,3875,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,attempted low goal
+7,6002,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+7,6002,False,False,0,0,0,0,1,False,0,0,False,2,0,False,1,they hit another robot while they were climbing 
+8,6138,True,False,0,0,0,0,1,False,0,0,False,2,0,False,1,only has gear mechanism
+9,6053,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,drove around and had gear mechanism
+10,6571,True,False,0,0,0,0,0,False,0,30,True,0,0,False,1,made of wood
+11,5685,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+11,5685,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,cant move 
+12,4408,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+13,3875,True,False,0,0,0,9,2,False,0,0,False,0,0,True,1,
+14,5502,True,False,0,0,0,0,2,False,0,9,False,0,0,False,1,
+15,5980,True,False,0,0,0,0,0,False,4,0,True,0,0,True,1,can carry a lot of fuel
+16,6002,False,False,0,0,0,0,1,False,0,0,True,0,0,False,1,has a shooter isn't accurate
+17,5205,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+17,5205,True,False,0,0,0,0,2,False,0,0,False,0,0,True,1,super duper fast
+18,3655,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+19,5623,True,True,0,0,0,0,1,True,0,0,False,0,0,False,1,didn't hang in time
+19,5623,False,False,0,0,0,0,1,False,0,10,False,0,0,False,1,
+20,6580,True,False,0,0,0,0,0,False,0,0,False,0,1,False,1,
+21,4216,True,False,0,0,0,0,1,True,0,0,False,0,0,True,1,
+22,6119,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+23,3658,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,has gear and climbing but is a failure
+24,5501,True,False,0,0,0,0,1,False,0,80,False,0,0,True,1,
+25,1254,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+26,4568,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+27,5448,False,False,0,0,0,0,0,False,1,0,True,0,0,False,1,"got jammed up, trash"
+28,6571,True,False,0,0,0,0,0,False,0,6,False,0,0,False,1,"bounces around
+wooden drive"
+29,6138,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,"literally does nothing
+has a gear thing but doesnt use it"
+30,3602,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,"rainbow
+tbh i was too busy focusing on us
+but they kinda were in the back the entire time sooo"
+31,4003,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,"fast af
+has hanging,ball, and gear pickup mechanisms"
+32,4216,False,False,0,0,0,0,1,True,0,0,False,0,0,True,2,gear loading and pick up are un reliable hung quickly and eaisily
+33,6425,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,rainbow ...  has trouble taking in gears form feeder
+34,5248,True,False,0,0,0,0,0,False,0,0,True,0,0,True,1,rainbow
+35,5685,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+36,5161,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+37,6119,True,False,0,0,0,0,2,True,0,0,False,0,0,False,2,
+38,6589,False,False,0,0,0,0,2,True,0,0,False,0,0,False,1,rainbow
+39,5204,False,False,0,0,0,0,2,False,0,0,False,0,0,True,1,
+40,1254,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+41,5980,False,False,0,0,0,0,0,False,0,0,False,0,0,True,1,rainbow
+42,5205,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+43,5256,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+42,5205,True,True,0,0,0,0,3,False,0,0,False,0,0,True,1,
+43,5256,False,False,0,0,0,0,1,False,0,0,False,0,0,True,4,They struggled greatly trying to get the gears into the bot. Many fell right in front of them. They did climb but they didn't get all the way up. 
+44,6589,False,False,0,0,0,0,0,False,0,0,False,0,0,False,3,The team was extremely fast and tried to get a gear installed but struggled the entire round.
+45,830,False,True,0,0,0,0,2,False,0,0,True,0,0,False,1,This team did great. They got three gears and was able to hang. They led the red alliance to victory.
+46,6138,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+47,5685,True,False,0,0,0,0,0,False,0,0,False,0,0,False,2,Seemed to not have complete control of this robot. It got gears but it was not very efficient.
+47,5685,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,Dormant in auton. Struggled with their gear mechanism for the entire time.
+48,5559,True,False,0,0,0,0,0,False,2,0,True,0,0,False,1,Dominated the fuel aspect.
+49,4482,False,True,0,0,0,0,2,True,0,0,False,0,0,False,1,"They do have a climbing mechanism, it doesn't work very well. They are a solid gears team.
+"
+50,4381,False,False,0,0,3,0,0,False,10,0,False,0,0,False,1,Did great with shooting into the high goal. That was their main strategy.
+51,6119,False,False,0,0,0,0,0,False,0,0,False,0,0,True,1,"Small agile robot. Not great with the gears. Didn't get one gear into the machine. It hung, but it stopped halfway up."
+52,5501,False,False,0,0,0,0,0,False,0,0,True,0,0,True,1,"Used the hoppers, a decent gear team, and their hanging mechanism looks good.
+"
+53,5161,False,False,0,0,0,0,0,False,0,0,False,0,0,False,10,The climbing failed but they played great defense. They have gear capabilities.
+54,3602,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,Climb mechanism didn't work very well. 
+55,5227,False,False,0,0,0,0,0,False,5,0,True,0,0,False,1,Climbing mechanism worked just an inch away from hitting the plate. Ineffective.
+56,3603,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,Almost hung. Almost got a gear. Needs a more robust gear mechanism and a more robust rope and climber.

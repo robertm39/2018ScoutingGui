@@ -1,0 +1,17 @@
+match_id,team_id,crossed_baseline,auton_gears,auton_techfouls,auton_fouls,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,teleop_highgoal,teleop_lowgoal,pickup_fuel,teleop_techfouls,teleop_fouls,hanging,defense,comments
+45,5161,True,False,0,0,0,0,3,False,0,0,False,0,0,False,1,Was mostly watching us but.......................i think this data is somewhat accurate?
+46,4408,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,"tried to put fuel in the low goal, had a seizure instead"
+47,6580,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+46,6425,False,False,0,0,0,0,0,False,0,0,False,2,0,False,1,shout out to john 
+48,6571,True,False,0,0,0,0,0,False,0,2,False,0,0,False,1,"It didn't really do anything, was kinda just a wooden box aka the return of tote bot, i would not recommend  "
+49,3875,False,True,0,0,0,0,4,False,0,0,False,0,0,False,1,"Very visually appealing, i think they tried to climb but no"
+49,3875,False,True,0,0,0,0,3,False,0,0,False,0,0,False,1,"Clutch auton and very visually appealing, they have LEDs like us!1!!!1!!!1!!!!1!!111"
+50,5448,False,False,0,0,0,0,0,False,1,0,True,0,0,False,1,"This robot had the weirdest ball intake, like balls were dropping out of it? idek was useless, got totally carried"
+51,3603,True,False,0,0,0,0,3,True,0,0,False,0,0,False,1,BOI THIS ONE COULD PICK THEM UP OFF THE GROUND!!!!!!!!!!!!! HIGHLY RECOMMEND AS AN ALLIANCE PARTNER
+52,5227,False,False,0,0,0,0,1,False,3,0,True,0,0,True,1,
+53,6011,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,"gear loading problem,  "
+54,3658,False,False,0,0,0,0,1,False,0,0,False,0,0,False,2,can not do fuel
+55,4408,True,False,0,0,0,0,1,False,0,0,False,0,0,False,2,"poor build quality
+"
+56,4381,False,False,0,0,1,0,2,False,0,0,True,0,0,False,1,bad climbing mechanism
+57,6043,False,False,0,0,0,0,2,False,0,0,False,0,0,True,1,

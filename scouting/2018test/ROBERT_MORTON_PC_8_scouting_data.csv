@@ -1,0 +1,4 @@
+match_id,team_id,cross_line,auton_ci_switch,auton_ci_scale,auton_cube_count,cube_count,cube_switch,cube_scale,cube_vault,fouls,tech_fouls,endgame_action,helping_robot,comments
+1,5697,False,False,True,0,4,0,0,0,2,0,2,False,
+2,4362,False,True,False,0,0,0,4,0,3,0,3,True,
+3,830,True,True,True,10,10,10,10,10,10,10,1,True,

@@ -1,0 +1,59 @@
+match_id,team_id,crossed_baseline,auton_gears,auton_techfouls,auton_fouls,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,teleop_highgoal,teleop_lowgoal,pickup_fuel,teleop_techfouls,teleop_fouls,hanging,defense,comments
+2,4408,True,False,0,0,0,0,0,False,0,0,False,0,0,False,2,
+3,5501,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,Couldn't receive gears
+4,4381,True,False,0,0,0,0,1,False,0,0,False,0,0,False,3,was waiting for pilots for a while
+5,4568,False,False,0,0,0,0,2,False,0,0,False,0,0,False,2,
+6,4482,False,False,0,0,0,0,0,True,0,0,True,0,0,False,1,maybe crossed baseline
+7,6425,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+8,4568,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+9,5559,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,
+10,6580,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,stopped moving
+11,4453,True,False,0,0,0,0,0,False,6,0,True,0,0,False,1,
+12,5448,True,False,0,0,0,0,0,False,1,0,True,0,0,False,1,was hidden from view for almost entire matcg
+13,4216,True,False,0,0,0,0,2,True,0,0,False,0,0,True,1,
+14,5248,True,False,0,0,0,0,0,True,1,0,False,0,0,False,1,dropped gear twice
+15,4408,True,False,0,0,0,0,0,False,0,5,False,0,0,False,1,gear mechanism broke?
+16,3875,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+17,6589,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+18,6425,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+18,6425,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+19,830,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,^0^
+20,5559,True,False,1,0,0,0,1,False,0,0,False,0,0,False,1,
+21,5248,False,False,0,0,0,0,1,True,0,0,False,0,0,False,1,"circlessssss
+can hang but not fast enough"
+22,5685,False,False,0,0,0,0,0,False,0,0,False,0,0,False,2,absent
+23,6138,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+24,3655,False,False,0,0,0,0,3,True,0,0,False,0,0,True,1,
+25,6589,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,Bad pilot
+26,830,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+27,5623,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+28,3658,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+29,5205,False,True,0,0,0,0,3,False,0,0,False,0,0,False,1,
+30,4482,True,False,0,0,0,0,1,True,0,0,False,0,0,False,1,close to hanging
+31,5676,True,False,0,0,0,0,2,False,0,0,False,0,0,True,1,
+32,5502,True,False,0,0,0,0,0,True,0,0,False,0,0,False,1,"Got gears to players, but kept dropping the gears"
+33,5256,False,False,0,0,0,0,1,False,0,0,True,0,0,True,1," Lots of trouble picking up gears, decided to go for fuel instead bjt missed"
+34,3875,False,False,0,0,0,0,3,False,0,4,False,0,0,True,1,
+35,3603,False,False,0,0,0,0,2,False,0,0,False,0,0,True,1,
+36,6092,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,out of sight most of game
+37,3655,True,False,0,0,0,0,0,False,0,0,False,0,0,True,1,
+38,4216,False,False,0,0,0,0,0,False,0,0,False,0,0,True,1,rainbow
+39,5256,True,False,0,0,0,0,0,False,0,0,True,0,0,True,1,
+40,5227,False,False,0,0,0,0,0,False,5,0,True,0,0,False,1,
+41,6119,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+42,6002,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,
+43,5676,True,False,0,0,0,0,2,False,0,0,False,0,1,True,1,
+44,6053,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+45,3603,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+46,5502,True,False,0,0,0,0,3,False,0,0,False,0,0,True,1,
+47,6011,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+48,6002,True,False,0,0,0,0,0,False,0,0,False,0,0,True,1,
+49,3658,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+49,3658,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,Robot didnt move
+50,5623,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+51,6092,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,Didnt really do much
+52,4003,False,False,0,0,4,0,2,False,0,0,False,0,0,True,1,Good at receiving and delivering gears
+53,5980,True,False,0,0,0,0,0,False,0,0,False,0,0,True,1,
+54,4453,True,False,0,0,0,0,1,True,0,0,False,0,0,False,1,
+55,6092,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+56,1254,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,

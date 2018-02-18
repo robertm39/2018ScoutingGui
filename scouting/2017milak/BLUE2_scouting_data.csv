@@ -1,0 +1,63 @@
+match_id,team_id,crossed_baseline,auton_gears,auton_techfouls,auton_fouls,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,teleop_highgoal,teleop_lowgoal,pickup_fuel,teleop_techfouls,teleop_fouls,hanging,defense,comments
+2,5676,True,False,0,0,0,0,1,True,0,0,True,0,0,True,3,"rainbow
+spun in circles???"
+3,6119,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+4,830,True,False,0,0,0,0,1,True,0,0,False,0,0,True,1,"rainbow
+AUTOMATICALLY WINNING CAUSE ITS US
+winwinwinwinwinwinwinwinwinwinwinwinwinwinwinwinwinwiniwninwiwn
+420 blaze it
+WHY ARE WE MOVING IN CIRCLES
+
+"
+5,6138,False,False,0,0,0,0,1,False,0,0,False,0,0,False,2,"tried to get up the rope, but ultimately just failed and flopped over"
+6,4216,False,False,0,0,0,0,0,True,0,0,False,0,0,False,1,
+7,5205,True,False,0,1,0,0,1,False,0,0,False,0,0,False,1,"pilot reached outside??
+so a foul or yellow card
+it can hang but didnt have enough time"
+8,6011,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,"Just stayed there in auton. Tried to deliver a gear, did not. 0/10, would not recommend."
+9,5501,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,"It almost hanged, it was climbing up but there was not enough time left. Not good at gears or fuel. 3/10, not v good. "
+10,6092,False,False,0,0,0,0,0,False,0,0,False,0,0,False,2,"Just dumped fuel onto floor in auton, did not move. Just chilled for the rest of the match. Tried to play some D."
+11,6425,False,False,0,0,0,0,2,True,0,0,False,0,0,False,3,No auton. Can only do gears.
+12,6002,True,True,0,0,0,0,0,False,0,0,False,0,1,True,1,"Pretty good auton, might have been able to pick up gears but didnt, could hang. "
+13,6119,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,Twas ok I guess. No auton.
+14,5256,False,False,0,0,0,0,1,False,0,0,False,0,0,True,1,"Ok i guess. Could have delivered a gear in auton, but it fell off the stick thing on the ""airship"".  "
+15,3603,True,False,0,0,0,0,2,False,0,0,False,0,0,False,3,
+16,6119,False,False,0,0,0,0,2,False,0,0,False,0,0,False,2,"Might have been able to hang, but it looks like the mechanism stopped functioning."
+17,6571,False,False,0,0,0,0,0,False,0,1,False,0,0,False,1,
+18,5676,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+19,5501,True,False,0,0,0,0,0,False,0,0,True,0,0,True,3,
+20,5502,True,False,0,0,0,0,1,False,0,10,False,0,0,True,1,
+21,5161,False,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+22,4381,False,False,0,0,3,0,1,False,3,0,True,0,0,False,1,
+23,5227,True,False,0,0,0,0,1,False,17,0,True,0,0,True,1,
+24,6092,False,False,0,0,0,0,0,False,0,10,False,0,0,False,1,
+25,4327,True,False,0,0,0,0,0,False,0,0,True,0,0,True,1,
+26,6002,True,False,0,0,0,0,0,False,0,0,True,0,0,False,1,
+27,5559,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+28,5204,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+29,6002,True,False,0,0,0,0,0,False,0,0,True,0,0,True,1,
+30,6011,False,False,0,0,0,0,0,False,0,0,True,0,0,False,1,
+31,6580,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+32,5685,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,embarrassment to whole family and cow.
+33,3655,False,False,0,0,0,0,1,True,0,0,False,0,0,False,1,rainbow
+34,5623,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,tried to hang and slipped also had gear mechanism but dropped them.
+35,4003,True,False,0,0,0,8,2,False,0,0,False,0,0,False,1,"goes very fast, too fast"
+36,5676,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+37,6043,True,True,0,0,0,0,1,False,0,0,True,0,0,False,1,
+38,4408,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,Had a gear get stuck in it
+39,830,True,True,0,0,0,0,3,False,0,0,False,0,0,True,1,OMG OMG OMG
+40,5448,False,False,0,0,0,0,0,False,0,0,True,0,0,False,1,It can pick it up but gets jammed before the fuel gets into the container. 
+41,3658,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,had gear mechanism but didn't work well
+43,3875,True,True,0,0,0,0,2,True,0,0,False,0,0,False,1,
+44,4453,True,False,0,0,0,0,1,True,0,0,False,0,0,False,1,
+45,5448,False,False,0,0,0,0,0,False,1,0,True,0,0,False,1,
+46,5501,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,did not move after autonomous
+47,5623,True,False,0,0,0,0,0,True,0,0,True,0,0,False,1,
+48,6043,False,False,0,0,0,0,0,True,0,0,True,0,0,False,1,"""it was s"49,6138,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,Can't pick up gears LOL
+50,3602,False,False,0,0,0,0,3,False,0,0,False,0,0,True,1,can do auton gear
+52,4408,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,*sigh* was lame
+53,1254,True,False,0,0,0,0,1,True,0,0,False,0,0,True,1,"Didn't get all the way up when it hung, I thought they would be better :("
+54,6425,True,False,0,0,0,0,1,False,0,0,False,0,0,False,4,"couldn't do much, but i guess defense? "
+55,3875,False,True,0,0,0,0,1,False,0,0,False,0,0,False,1,Communication issues
+56,4568,False,False,0,0,0,0,1,False,0,0,False,0,0,True,1,almost made it 
+57,4216,True,False,0,0,0,0,3,True,0,0,False,0,0,True,1,TRIPLE TRIPLE HANG

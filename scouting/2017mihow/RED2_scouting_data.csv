@@ -1,0 +1,51 @@
+match_id,team_id,crossed_baseline,try_lft_auton_gears,try_cen_auton_gears,try_rgt_auton_gears,lft_auton_gears,cen_auton_gears,rgt_auton_gears,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,dropped_gears,teleop_highgoal,teleop_lowgoal,caught_rope,hanging,comments
+3,5688,False,False,False,False,False,False,False,0,0,2,False,6,0,0,False,False,bad robot is stupid & terrible
+4,470,False,False,False,False,False,False,False,0,0,5,False,0,0,0,True,True,
+5,3707,False,False,False,False,False,False,False,0,0,2,False,1,0,0,True,True,ok robot
+6,3568,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+14,201,True,True,False,False,False,False,False,0,0,2,False,1,0,0,True,True,They got a gear stuck inside them.
+15,3536,False,False,False,False,False,False,False,0,0,2,False,3,0,0,False,False,can't align with gear chute
+16,6591,False,False,False,False,False,False,False,0,0,0,False,1,0,0,True,True,
+17,6081,False,False,False,False,False,False,False,0,0,1,False,0,0,0,True,False,the bumpers were messed up
+18,2612,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+19,27,False,False,False,False,False,False,False,0,0,1,False,0,32,0,True,False,
+20,4384,False,False,False,False,False,True,False,0,0,3,False,0,0,0,True,False,
+21,3414,False,False,False,False,False,False,False,1,0,1,False,0,0,0,True,False,
+22,6591,False,False,False,False,False,False,False,0,0,1,False,1,0,0,False,False,did not move
+23,4998,False,False,True,False,False,False,False,0,0,0,False,1,0,0,True,False,driver is bad. ball stuck in gear mec
+24,2834,False,False,False,False,False,False,False,0,0,4,True,0,0,0,True,True,
+25,2145,False,False,True,False,False,False,False,0,0,4,False,0,0,0,True,True,
+26,5697,False,False,False,False,False,False,False,0,0,1,False,0,0,0,True,False,gears slipped
+27,6081,True,False,False,False,False,True,False,0,0,0,False,0,0,0,False,False,the rope wasn't let down 
+28,2834,True,False,False,False,False,False,False,0,0,1,True,0,0,0,True,True,
+29,5235,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+30,5697,False,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,
+31,3536,False,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+32,66,False,False,False,False,False,True,False,0,0,3,True,0,0,0,True,True,carried their team but still lost
+33,5238,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,True,
+43,5502,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,False,
+44,3641,False,False,False,False,False,False,True,0,0,2,True,0,0,0,True,True,I think that they only pick off from the ground. They are a good robot. Their ground mechanism is decently efficient.
+45,4998,False,False,False,False,False,False,False,0,0,2,False,0,0,0,False,False,Not a fan of their hanging mechanism. Difficult to see in Auton.
+46,1,False,False,True,False,False,False,False,0,0,2,False,0,0,0,True,True,"Not to shabby. It did fairly well. Not the fastest and not the best, but it worked. The climber is not the fastest in obtaining the rope."
+47,3707,False,False,True,False,False,False,False,0,0,3,False,0,0,0,True,True,They almost got a fourth. Pretty good robot. They were defended against pretty hard. 
+48,5688,False,True,False,False,False,False,False,0,0,2,False,0,0,0,True,True,Not amazing. The gear mechanism had some trouble. But it did get two gears and grabbed the rope relatively quickly.
+49,6591,True,False,False,False,False,False,False,0,0,1,False,1,0,0,True,True,"top heavy
+"
+50,4840,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+50,4840,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,used a cell phone
+51,830,False,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,
+52,5238,True,False,False,False,False,False,False,0,0,1,True,0,0,0,True,True,
+53,5517,True,False,False,False,False,False,False,0,0,2,True,0,0,0,True,True,
+54,3568,False,True,False,False,False,False,False,0,0,0,False,0,0,0,True,True,
+55,6101,False,False,True,False,False,False,False,0,0,4,True,0,0,0,True,True,
+59,51,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+60,4840,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+61,5203,False,False,False,False,False,True,False,0,0,0,False,1,0,0,False,False,"Stopped moving middle of game
+couldnt see if it grabbed the rope but it didnt go up"
+62,3414,False,True,False,False,False,False,False,0,0,1,False,1,0,0,True,True,"weird driving, kept hitting things"
+64,5502,False,False,False,False,False,True,False,0,0,2,False,0,0,0,True,True,
+65,5697,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,"GETTING GEARS FROM THIS TEAM IS REALLY RISKY, THEY CAN BARELY GET CLOSE TO SPRING"
+66,5235,False,False,False,False,False,False,False,4,0,2,False,0,0,0,True,False,HANGING MECHANISM DOES NOT WORK
+67,5203,False,False,True,False,False,False,False,0,0,2,False,0,0,3,True,False,"Grabbed the rope but stalled, hanging mechanism doesnt work"
+68,5523,True,False,False,False,False,False,False,0,0,0,False,0,0,0,False,False,
+69,5238,False,False,False,True,False,False,False,0,0,1,False,0,0,0,False,False,

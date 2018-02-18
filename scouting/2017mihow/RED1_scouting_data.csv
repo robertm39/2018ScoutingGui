@@ -1,0 +1,54 @@
+match_id,team_id,crossed_baseline,try_lft_auton_gears,try_cen_auton_gears,try_rgt_auton_gears,lft_auton_gears,cen_auton_gears,rgt_auton_gears,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,dropped_gears,teleop_highgoal,teleop_lowgoal,caught_rope,hanging,comments
+12,4384,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+13,1189,True,True,False,False,False,False,False,0,0,2,False,1,0,0,True,True,
+14,4776,False,False,True,False,False,False,False,0,0,1,False,0,0,0,False,False,
+15,5502,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+16,3707,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,False,
+17,5695,False,False,False,False,False,True,False,0,0,2,False,0,0,0,False,False,
+18,4998,False,True,False,False,False,False,False,0,0,2,False,0,0,0,True,False,
+19,5703,False,True,False,False,False,False,False,1,0,2,False,0,0,0,True,True,
+20,4776,False,False,False,False,False,True,False,0,0,1,False,2,0,0,False,True,
+21,5530,False,False,False,False,False,False,False,0,0,4,False,0,0,0,False,False,
+22,1,False,False,False,False,False,True,False,0,0,3,False,0,0,0,False,False,
+23,201,False,False,False,False,False,False,False,0,0,1,False,0,0,0,True,False,
+24,5203,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+25,5235,False,False,True,False,False,False,False,0,0,2,False,0,0,0,True,True,
+26,5523,True,False,False,False,False,False,False,0,0,0,False,1,0,0,True,True,
+27,3568,True,False,False,False,False,False,False,0,0,0,False,1,0,0,True,True,
+28,4384,False,False,False,False,False,True,False,0,0,0,False,0,0,0,False,False,stopped working
+29,3641,False,False,False,False,False,False,False,0,0,2,False,0,0,0,False,False,
+30,1189,True,False,False,False,False,False,False,0,0,2,False,0,0,0,False,True,
+31,302,False,False,False,False,False,False,False,0,0,3,False,0,0,0,False,True,
+32,5517,True,False,False,False,False,False,False,0,0,2,False,0,0,0,False,False,
+33,5695,True,False,False,False,False,False,False,0,0,3,False,0,0,0,False,True,
+34,6591,True,False,False,False,False,False,False,0,0,0,False,2,0,0,True,True,
+35,6101,True,False,False,False,False,False,False,0,0,2,True,0,0,0,False,False,
+36,66,True,False,False,False,False,False,False,0,0,2,True,0,0,0,True,True,
+37,5688,True,False,False,False,False,False,False,0,0,4,False,0,0,0,False,False,
+39,5695,True,False,True,False,False,False,False,0,0,1,False,0,0,0,True,False,The bumper became partially detached
+40,3707,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,True,
+41,4840,True,False,False,False,False,False,False,0,0,1,False,0,0,0,False,False,
+42,2612,False,False,True,False,False,False,False,0,0,0,False,0,0,0,True,True,
+43,5703,True,False,True,False,False,False,False,0,0,0,False,0,0,0,False,False,This team is AYYY LAMO
+44,3536,False,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+45,6101,True,False,False,False,False,False,False,0,0,3,True,0,0,0,True,True,
+46,5235,True,False,False,False,False,False,False,0,0,2,False,0,0,0,True,True,
+47,5517,False,False,False,False,False,False,False,0,0,3,False,0,0,0,False,True,
+48,3414,False,False,False,False,False,False,False,0,0,3,False,0,0,0,False,True,
+49,5538,True,False,False,False,False,False,False,0,0,1,False,0,0,0,True,False,
+50,4384,True,False,False,False,False,True,False,0,0,0,False,0,0,0,False,True,played a lot of defense
+51,4362,False,False,False,False,False,False,False,8,0,2,False,0,0,0,False,True,
+53,1502,False,False,False,False,False,False,False,0,0,2,False,1,0,0,True,False,had a rad time grabbing gears.
+54,470,True,False,False,False,False,False,False,0,0,2,True,1,0,0,True,False,took a sec to grab gear. almost made it to the top with 2secs left
+55,66,False,False,False,False,True,False,False,0,0,5,False,0,0,0,False,True,they are super fast
+56,3641,True,False,False,True,False,False,False,0,0,2,True,3,0,0,True,True,"It dropped the same gear 3 times, and picked it up each time."
+57,201,True,False,False,False,False,False,False,0,0,1,False,1,0,0,True,True,","
+58,2145,True,False,False,False,False,False,False,0,0,0,False,5,0,0,True,True,Dropping gears. 
+61,1189,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+62,51,False,False,False,False,False,True,False,0,0,3,False,0,0,0,True,True,
+63,4362,True,False,False,False,False,False,False,0,0,2,False,1,0,0,True,True,
+64,5688,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+65,2612,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+66,51,True,False,False,False,False,False,False,0,0,3,False,0,0,0,True,True,
+67,66,True,False,False,False,True,False,False,0,0,3,False,0,0,0,True,True,
+68,1,False,False,False,False,False,True,False,0,0,1,False,0,0,0,True,True,stopped moving halfway through the match and didnt work until hanging time

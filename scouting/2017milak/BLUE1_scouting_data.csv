@@ -1,0 +1,68 @@
+match_id,team_id,crossed_baseline,auton_gears,auton_techfouls,auton_fouls,auton_highgoal,auton_lowgoal,teleop_gears,pickup_gears,teleop_highgoal,teleop_lowgoal,pickup_fuel,teleop_techfouls,teleop_fouls,hanging,defense,comments
+2,5248,True,False,0,0,0,0,0,False,1,0,False,0,0,False,5,It didn't do much. It was able to shoot a couple balls but only one went in.
+3,6571,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+3,6571,False,False,0,0,0,0,0,False,0,10,True,0,0,False,1,
+4,4453,True,False,0,0,0,0,0,False,0,0,True,0,0,False,1,
+5,6043,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,"it was able to climb but once it got it to the top it fell
+"
+6,5256,True,False,0,0,0,0,2,False,3,0,False,0,0,False,2,
+7,6092,False,False,0,0,0,0,0,False,0,0,False,0,0,False,2,they were trying to grab a gear but were not successful
+8,4003,True,True,0,0,0,10,2,False,0,0,False,0,0,False,3,They were very fast and well controlled
+8,4003,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+9,5980,True,False,0,0,0,0,0,False,1,0,False,0,0,True,1,
+9,5980,False,False,0,0,0,0,0,False,0,0,False,0,1,False,1,
+10,5256,True,True,0,0,0,0,1,False,0,0,False,0,0,False,1,
+11,4482,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,They  were trying to pick up gears but were unsuccessful 
+12,3655,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+13,830,True,False,0,0,0,0,3,False,0,0,False,0,0,False,1,
+14,5227,True,False,0,0,0,0,0,False,13,0,True,0,0,True,1,
+15,5204,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+16,6011,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,
+16,6011,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+17,4381,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+17,4381,False,False,0,0,0,0,0,False,0,0,True,0,0,False,1,
+18,4327,True,False,0,0,0,0,1,False,0,0,True,0,2,True,8,
+19,6138,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+20,4568,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+21,6011,False,False,0,0,0,0,0,False,2,0,False,0,0,False,1,
+22,5256,True,True,0,0,0,0,2,False,0,0,False,0,0,True,1,"rainbowwwwwwwwwwwwwwwws
+ "
+23,6580,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,didnt knwo what it was doing at all
+24,3603,True,False,0,0,0,0,1,True,0,0,False,0,0,False,1,nahhhhhhhh
+25,5204,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,Their battery fell out
+26,5502,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+27,4408,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+28,4381,False,False,0,0,7,0,0,False,0,0,False,0,0,False,1,
+29,5248,False,False,0,0,0,0,1,False,0,0,False,0,0,True,1,
+30,5227,True,False,0,0,0,0,0,False,4,0,False,0,0,False,1,
+31,6053,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+32,5501,True,False,0,0,0,0,1,False,0,22,False,0,0,True,1,"low goal dumper, too hard to count, preformed well, gets gears from hoppers"
+33,5980,True,False,0,0,0,0,2,False,0,0,False,0,0,True,1,"preformed well, had trouble getting gears on to peg"
+34,4408,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,goes in circlesss
+35,6002,True,False,0,0,0,0,0,False,4,0,True,0,0,False,1,cant hang
+36,6425,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+37,4482,False,False,0,0,0,0,1,True,0,0,False,0,0,False,1,hanging mech wasnt strong enough
+38,6571,True,False,0,0,0,0,0,False,10,0,False,0,0,False,1,"pls light on fire pls light on fire pls
+
+RaiNBowW"
+39,4327,True,False,0,0,0,0,3,False,0,0,False,0,0,True,1,TRIPLE HANGGGGGGGG
+40,4453,True,False,0,0,0,0,2,False,0,0,False,0,0,False,1,
+41,5248,True,False,0,0,0,0,0,True,0,1,True,0,0,True,1,
+43,6043,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,It was ok i guess. 2/10
+44,4568,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,"it has a hanging mechanism, but it doesn't look like it works
+"
+45,5227,True,False,0,0,0,0,1,False,0,0,True,0,0,False,1,rainbow
+46,4408,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1, 
+46,4408,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,Red card
+47,1254,True,False,0,0,0,0,0,False,0,0,False,0,1,False,1,
+48,5676,False,False,0,0,0,0,0,False,0,0,False,0,0,False,1,
+48,5676,True,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+49,6589,False,False,0,0,0,0,3,False,0,0,False,0,0,False,1,
+50,4216,False,False,0,0,0,0,3,False,0,0,False,0,0,False,1,
+50,4216,True,False,0,0,0,0,3,True,0,0,False,0,0,True,1,
+51,5502,True,False,0,0,0,0,1,False,0,0,False,0,0,True,1,
+52,3655,True,False,0,0,0,0,3,True,0,0,False,0,0,True,1,"it can sort stuff it picks up, clean freak"
+53,4568,False,False,0,0,0,0,1,False,0,0,False,0,0,False,1,
+54,4327,True,False,0,0,0,0,2,False,0,0,False,0,0,True,1,
+55,6053,True,False,0,0,0,0,0,False,0,0,False,0,0,False,1,could do stuff but is bad
+56,4482,True,True,0,0,0,0,1,True,0,0,False,0,0,False,1,stopped working halfway through
