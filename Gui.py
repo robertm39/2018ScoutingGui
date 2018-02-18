@@ -57,35 +57,36 @@ class ZScoutFrame(tk.Frame):
             if not startup:
                 self.state.comp = self.comp_choose.get()
             self.year = self.state.comp[:4]
-            if self.year == '2017':
-                self.m_wid = 1200
-            else:
-                self.m_wid = 1200
-            self.state.w('game', gms.GAMES_FROM_YEARS[self.year])
-            
-            #Get scouting
-            self.state.raw_scouting = sdg.get_raw_scouting_data(self.state.comp)
-            self.state.raw_scouting = self.state.game.process_scouting(self.state.raw_scouting)
-            
-            #Get contrs and averages
-            self.state.contrs = gms.contrs(self.state.raw_scouting, self.state.game)
-            self.state.averages = gms.averages_from_contrs(self.state.contrs)
-            
-            #Get categories
-            #Access the first team in raw_scouting, access its first match, and get the keys
-            scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
-            self.state.categories = gms.get_cats(scouting_cats, self.state.game.categories)
-            self.state.numeric_cats = gms.get_cats(scouting_cats, self.state.game.numeric_categories, numeric=True)
-            
-            #Get teams
-            self.state.teams = list(self.state.contrs.keys())
-            
-            self.error.set("")
-            
-            config_teams_frame()
-            config_ranking_frame()
-            
-            self.state.save()
+            if not self.year == '':
+                if self.year == '2017':
+                    self.m_wid = 1200
+                else:
+                    self.m_wid = 1200
+                self.state.w('game', gms.GAMES_FROM_YEARS[self.year])
+                
+                #Get scouting
+                self.state.raw_scouting = sdg.get_raw_scouting_data(self.state.comp)
+                self.state.raw_scouting = self.state.game.process_scouting(self.state.raw_scouting)
+                
+                #Get contrs and averages
+                self.state.contrs = gms.contrs(self.state.raw_scouting, self.state.game)
+                self.state.averages = gms.averages_from_contrs(self.state.contrs)
+                
+                #Get categories
+                #Access the first team in raw_scouting, access its first match, and get the keys
+                scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
+                self.state.categories = gms.get_cats(scouting_cats, self.state.game.categories)
+                self.state.numeric_cats = gms.get_cats(scouting_cats, self.state.game.numeric_categories, numeric=True)
+                
+                #Get teams
+                self.state.teams = list(self.state.contrs.keys())
+                
+                self.error.set("")
+                
+                config_teams_frame()
+                config_ranking_frame()
+                
+                self.state.save()
                 
         def config_teams_frame():
             self.state.teams.sort(key=lambda t: int(t[3:]))
@@ -229,8 +230,8 @@ class ZScoutFrame(tk.Frame):
             def save_summary(summary):
 #                print('click')
                 string = summary.get("1.0",'end-1c')
-                print(string)
-                print(key)
+#                print(string)
+#                print(key)
                 self.state.summaries[key] = string
                 self.state.save()
             
