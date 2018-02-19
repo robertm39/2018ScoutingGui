@@ -17,9 +17,6 @@ import save_data as sd
 
 import easter_eggs as ee
 
-#class CannotGetCompetitionError(BaseException):
-#    pass
-
 class ZScoutFrame(tk.Frame):
     """The frame the ZScout Gui is in."""
            

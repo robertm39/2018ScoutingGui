@@ -164,6 +164,7 @@ powerup_cats = ['auton_ci_switch',
                 'hanging',
                 'helping_robot',
                 'comments']
-POWER_UP = Game(powerup_cats, powerup_cats[:-1], None, powerup_process_scouting)
+powerup_rankings = {'tech_fouls':30}
+POWER_UP = Game(powerup_cats, powerup_cats[:-1], None, powerup_process_scouting, powerup_rankings)
 
 GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}
