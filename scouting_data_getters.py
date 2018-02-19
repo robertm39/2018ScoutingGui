@@ -9,8 +9,6 @@ import os
 import ast
 import csv
 
-#import categories as ct
-
 def get_data(line_data):
     match_num = line_data['match_id']
     team_num = 'frc' + line_data['team_id'].__str__()
