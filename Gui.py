@@ -265,7 +265,7 @@ class ZScoutFrame(tk.Frame):
             key = self.state.comp, team
             def save_summary(summary):
                 string = summary.get("1.0",'end-1c') #Get all the text
-                do_easter_eggs(string)
+                do_easter_eggs()
                 self.state.summaries[key] = string
                 self.state.save()
             
