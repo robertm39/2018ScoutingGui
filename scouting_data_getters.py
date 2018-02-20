@@ -11,7 +11,8 @@ import csv
 
 def get_data(line_data):
     match_num = line_data['match_id']
-    team_num = 'frc' + line_data['team_id'].__str__()
+#    team_num = 'frc' + line_data['team_id'].__str__()
+    team_num = line_data['team_id'].__str__()
     
     result = {}
     for key in line_data.keys():
@@ -36,7 +37,8 @@ def get_raw_scouting_data(folder):
         line_datas = read_scouting(file)
         
         for line_data in line_datas:
-            team_num = 'frc' + line_data['team_id'].__str__()
+#            team_num = 'frc' + line_data['team_id'].__str__()
+            team_num = line_data['team_id'].__str__()
             
             match_num = line_data['match_id']
             line_data = line_data.copy()

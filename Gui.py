@@ -89,7 +89,7 @@ class ZScoutFrame(tk.Frame):
                 self.state.save()
                 
         def config_teams_frame():
-            self.state.teams.sort(key=lambda t: int(t[3:]))
+            self.state.teams.sort(key=lambda t: int(t))
             num_in_chunk = 10
             
             self.teams_text.delete('1.0', tk.END) #Clear entire panel
@@ -101,7 +101,7 @@ class ZScoutFrame(tk.Frame):
                 for j in range(0, num_in_chunk):
                     index = num_in_chunk*i + j
                     if(index < len(self.state.teams)):
-                        team = self.state.teams[index][3:]
+                        team = self.state.teams[index]
                         ln = len(team)
                         string += team + ' '*(6-ln)
                         
@@ -152,7 +152,7 @@ class ZScoutFrame(tk.Frame):
                 
                 for i in range(0, len(r_teams)):
                     team = r_teams[i]
-                    string = str(i+1) + ': ' + str(team[3:])
+                    string = str(i+1) + ': ' + str(team)
                     string += ' ' * (11-len(string)) + 'with ' + '%.2f' % score(team)
                     if i != len(r_teams) - 1:
                         string += '\n'
@@ -215,7 +215,7 @@ class ZScoutFrame(tk.Frame):
                 length = len(line_data_type)
                 inner_length = length - len(data.__str__())
                 result += ' '*math.floor(inner_length /2) + data.__str__() + ' '*math.ceil(inner_length / 2) + ' '*2
-             
+            
             return result.rstrip()
         
         def get_column_string():
@@ -232,13 +232,12 @@ class ZScoutFrame(tk.Frame):
             ranks = {}
             for team in self.state.teams:
                 ranks[team] = score(team)
-#            print('ranks:')
-#            print(ranks)
-#            print('')
             ee.do_rank_eggs(ranks, get_default_ranks())
+            ee.do_gen_eggs()
         
         def show_summary():
-            team = 'frc' + self.team_summary_team_field.get()
+#            team = 'frc' + self.team_summary_team_field.get()
+            team = self.team_summary_team_field.get()
             self.team_summary_inner_frame.pack_forget()
             self.team_summary_inner_frame = tk.Frame(self.team_summary_canvas_frame, relief=tk.RAISED, borderwidth=1)
             self.team_summary_inner_frame.pack(side=tk.TOP)
