@@ -24,26 +24,17 @@ def get_data(line_data):
     return result
 
 def get_game(folder, year=None):
-    directory = os.path.dirname(os.path.realpath(__file__)) + '\\scouting\\' + folder + '\\gamedef'# + '\\game_def.py'
-    print('directory:', directory)
+    directory = os.path.dirname(os.path.realpath(__file__)) + '\\scouting\\' + folder + '\\gamedef'
     try:
         for file_name in os.listdir(directory): #There should only be one .py file, but I don't know its name
 #            The game should be defined in this file
-#            module = __import__(directory)
             if not '__pycache__' in file_name:
-                full_name = directory + '\\' + file_name
-                print('full_name:', full_name)
-                print('')
                 file = open(directory + '\\' + file_name, 'r')
                 module = imp.load_module(file_name,
                                          file,
                                          directory,
                                          details=('', 'r', imp.PY_SOURCE))
                 game = module.get_game()
-#                print(module)
-#                print(game)
-#                print(game.process_scouting)
-#                print('')
                 return game
     except FileNotFoundError:
         print('getting game from year')
