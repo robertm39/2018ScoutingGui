@@ -21,7 +21,7 @@ class Game:
         for category in self.numeric_categories:
             if not category in self.default_weights:
                 self.default_weights[category] = 0
-                
+
 def put_in_histogram(contrs, upper_limit = False, verbose=False):
     result = {}
     tot = 0
@@ -122,6 +122,7 @@ steamworks_cats = ['auton_lowgoal',
                    'hanging',
                    'caught_rope',
                    'comments']
+
 steamworks_rankings = {'auton_lowgoal':1,
                        'auton_highgoal':3,
                        'auton_gears':30,
@@ -164,7 +165,7 @@ powerup_cats = ['auton_ci_switch',
                 'hanging',
                 'helping_robot',
                 'comments']
-powerup_rankings = {'tech_fouls':30}
+powerup_rankings = {'tech_fouls':0}
 POWER_UP = Game(powerup_cats, powerup_cats[:-1], None, powerup_process_scouting, powerup_rankings)
 
 GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}

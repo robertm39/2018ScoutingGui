@@ -49,6 +49,9 @@ class ZScoutFrame(tk.Frame):
             self.active_frame = frame
         #end frame methods
 
+        def get_game():
+            return self.game
+
         #scouting methods
         def set_comp(startup=False):
             """Set the current competition to the one specified in the comp_choose field, set relevant variables, and get team contribution data."""
@@ -57,18 +60,22 @@ class ZScoutFrame(tk.Frame):
                 self.state.comp = self.comp_choose.get()
             self.year = self.state.comp[:4]
             if not self.year == '':
-                if self.year == '2017':
-                    self.m_wid = 1200
-                else:
-                    self.m_wid = 1200
-                self.state.w('game', gms.GAMES_FROM_YEARS[self.year])
+#                if self.year == '2017':
+#                    self.m_wid = 1200
+#                else:
+#                    self.m_wid = 1200
+                self.m_wid = 1200
+#                self.state.w('game', gms.GAMES_FROM_YEARS[self.year])
+#                self.state.game = gms.GAMES_FROM_YEARS[self.year]
+#                self.state.w('game', sdg.get_game(folder=self.state.comp))
+                self.game = sdg.get_game(folder=self.state.comp)
                 
                 #Get scouting
-                self.state.raw_scouting = sdg.get_raw_scouting_data(self.state.comp)
-                self.state.raw_scouting = self.state.game.process_scouting(self.state.raw_scouting)
+                self.state.raw_scouting = sdg.get_raw_scouting_data(folder=self.state.comp)
+                self.state.raw_scouting = get_game().process_scouting(self.state.raw_scouting)
                 
                 #Get contrs and averages
-                self.state.contrs = gms.contrs(self.state.raw_scouting, self.state.game)
+                self.state.contrs = gms.contrs(self.state.raw_scouting, get_game())
                 self.state.averages = gms.averages_from_contrs(self.state.contrs)
                 
                 #Get categories
@@ -76,8 +83,8 @@ class ZScoutFrame(tk.Frame):
                 self.state.teams = list(self.state.contrs.keys())
 #                scouting_cats = self.state.raw_scouting[list(self.state.raw_scouting.keys())[0]][0][1].keys()
                 scouting_cats = self.state.raw_scouting[self.state.teams[0]][0][1].keys()
-                self.state.categories = gms.get_cats(scouting_cats, self.state.game.categories)
-                self.state.numeric_cats = gms.get_cats(scouting_cats, self.state.game.numeric_categories, numeric=True)
+                self.state.categories = gms.get_cats(scouting_cats, get_game().categories)
+                self.state.numeric_cats = gms.get_cats(scouting_cats, get_game().numeric_categories, numeric=True)
                 
                 #Get teams
                 
@@ -112,7 +119,7 @@ class ZScoutFrame(tk.Frame):
             return float(self.cat_weight_fields[cat].get()) if len(string) > 0 else 0
         
         def get_default_ranks():
-            weights = self.state.game.default_weights
+            weights = get_game().default_weights
             teams = self.state.teams
             result = {}
             for team in teams:
@@ -186,7 +193,7 @@ class ZScoutFrame(tk.Frame):
                 label.pack(side=tk.TOP)
                 entry = tk.Entry(entry_panel)
                 
-                default_weight = str(self.state.game.default_weights[cat])
+                default_weight = str(get_game().default_weights[cat])
                 entry.insert(index=0, string=default_weight)
                 entry.pack(side=tk.TOP)
                 self.cat_weight_fields[cat] = entry
@@ -227,7 +234,7 @@ class ZScoutFrame(tk.Frame):
             return result.rstrip()
         
         def do_easter_eggs(): #This method might be ugly so no one will be able to guess the easter eggs from the code
-            ee.do_weight_eggs(get_weight, self.state.game.default_weights, self.state.numeric_cats)
+            ee.do_weight_eggs(get_weight, get_game().default_weights, self.state.numeric_cats)
             
             ranks = {}
             for team in self.state.teams:
