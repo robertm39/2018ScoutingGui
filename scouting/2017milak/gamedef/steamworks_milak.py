@@ -23,7 +23,7 @@ steamworks_cats = ['crossed_baseline',
                    'hanging',
                    'comments']
 
-steamworks_rankings = {'auton_lowgoal':1,
+steamworks_weights = {'auton_lowgoal':1,
                        'auton_highgoal':3,
                        'auton_gears':30,
                        'crossed_baseline':5,
@@ -35,7 +35,7 @@ steamworks_rankings = {'auton_lowgoal':1,
                        'teleop_gears':20,
                        'hanging':50}
 
-STEAMWORKS = gms.Game(steamworks_cats, steamworks_cats[:-1], None, gms.steamworks_process_scouting, steamworks_rankings)
+STEAMWORKS = gms.Game(steamworks_cats, steamworks_cats[:-1], None, gms.steamworks_process_scouting, steamworks_weights)
 
 def get_game():
     return STEAMWORKS

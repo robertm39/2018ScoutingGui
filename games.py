@@ -6,6 +6,8 @@ Created on Sun Jan 21 13:38:09 2018
 """
 
 class Game:
+    """The game for a year."""
+    
     def __init__(self,
                  categories,
                  numeric_categories,
@@ -70,7 +72,9 @@ def team_contrs(team_scouting, game, pr=False):
             if cat in results:
                 if not cat in contrs:
                     contrs[cat] = []
-                contrs[cat].append(results[cat])
+                result = results[cat]
+                if type(result) in [int, float]: #Ignore 'NA'
+                    contrs[cat].append(results[cat])
                 
     for cat in contrs:
         contrs[cat] = put_in_histogram(contrs[cat])
@@ -85,6 +89,16 @@ def get_cats(scouting_cats, game_cats, numeric=False):
         return result
     return [cat for cat in game_cats if cat in scouting_cats] #intersection
 
+def change_names(name_dict, match_dict):
+    result = {}
+    for cat in match_dict:
+        if cat in name_dict:
+            result[name_dict[cat]] = match_dict[cat]
+#        else:
+#            result[cat] = match_dict[cat]
+#            print('Couldn\'t convert:', cat)
+    return result
+
 def process_scouting_by_match(scouting, process_match):
     result = {}
     for team in scouting:
@@ -94,11 +108,44 @@ def process_scouting_by_match(scouting, process_match):
         result[team] = matches
     return result
 
+def combine_matches_from_sources(matches, source_order):
+    matches_from_source = {}
+    for match_id, match in matches:
+        matches_from_source[match['source']] = match_id, match
+        
+    for source in source_order:
+        if source in matches_from_source:
+            return matches_from_source[source]
+    return None
+
+def combine_scouting_from_sources(scouting, source_order):
+    result = {}
+    for team in scouting:
+        t_scouting = scouting[team]
+        ts_from_match_id = {}
+        for match_id, match in t_scouting:
+            l = ts_from_match_id.get(match_id, [])
+            l.append((match_id, match))
+            if not match_id in ts_from_match_id:
+                ts_from_match_id[match_id] = l
+        
+        n_ts = []
+        match_ids = list(ts_from_match_id)
+        match_ids.sort()
+        for match_id in match_ids:
+            matches = ts_from_match_id[match_id]
+            match = combine_matches_from_sources(matches, source_order)
+#            print(match)
+            if match:
+                n_ts.append(match)
+                
+        result[team] = n_ts
+    return result
+
 def steamworks_process_match(match):
     if 'caught_rope' in match:
         match = match.copy()
         match['caught_rope'] |= match['hanging']
-    match['jank_fouls'] = 0
     return match
 
 def steamworks_process_scouting(scouting):
@@ -142,17 +189,71 @@ steamworks_rankings = {'auton_lowgoal':1,
                        'caught_rope':0}
 STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting, steamworks_rankings)
 
+EAGLE_NAME_DICT = {'Crosses the auto line (auto-run)':'cross_line',
+                   'Number of Cubes in Exchange':'cube_vault',
+                   'Number of cubes in auton':'auton_cube_count',
+                   'Number of Cubes on Scale':'cube_scale',
+                   'Extra Notes':'comments',
+                   'source':'source'}
+
+def zealous_convert(token):
+    if type(token) is int:
+        return token
+    if token.lower() in ['yes', 'same side', 'from center', 'in position', 'in the middle']:
+        return 1
+    return 0
+
+def eagle_climb_convert_parked(token):
+    if type(token) is int:
+        return 0
+    if 'parked' in token.lower():
+        return 1
+    return 0
+
+def eagle_climb_convert_climb(token):
+    if type(token) is int:
+        return token
+    if token.lower() == 'yes':
+        return 1
+    return 0
+
 def powerup_process_match(match):
     match = match.copy()
-    endgame_action = match.pop('endgame_action')
-    match['climbing'] = int(endgame_action == 0) #climbing is action 0
-    match['parking'] =int(endgame_action == 1) #parking is action 1
+    
+    if match['source'] == 'RAT':
+        endgame_action = match.pop('endgame_action')
+        match['climbing'] = int(endgame_action == 0) #climbing is action 0
+        match['parking'] =int(endgame_action == 1) #parking is action 1
+#    if not 'source' in match:
+#        match['source'] = 'RAT'
+    
+    elif match['source'] == '3322':
+        n_match = change_names(EAGLE_NAME_DICT, match)
+#        print(list(n_match))
+        n_match['auton_ci_switch'] = zealous_convert(match['Switch capabilities'])
+        n_match['auton_ci_scale'] = zealous_convert(match['Scale capabilities'])
+        n_match['auton_cube_count'] = 'NA'
+        n_match['parking'] = eagle_climb_convert_parked(match['Climb'])
+        n_match['climbing'] = eagle_climb_convert_climb(match['Climb'])
+        n_match['cube_switch'] = match['Number of Cubes on Own Switch'] + match['Number of Cubes on Opponent\'s Switch']
+        n_match['cube_count'] = 'NA'
+        n_match['fouls'] = 'NA'
+        n_match['tech_fouls'] = 'NA'
+        match = n_match
+#        print(list(match))
+#        print('')
+        
     return match
 
 def powerup_process_scouting(scouting):
-    return process_scouting_by_match(scouting, powerup_process_match)
+    print('processing scouting')
+    preprocessed = process_scouting_by_match(scouting, powerup_process_match)
+    print('combining sources')
+    result = combine_scouting_from_sources(preprocessed, ['RAT', '3322'])
+    return result
 
-powerup_cats = ['auton_ci_switch',
+powerup_cats = ['cross_line',
+                'auton_ci_switch',
                 'auton_ci_scale',
                 'auton_cube_count',
                 'cube_count',
@@ -161,11 +262,13 @@ powerup_cats = ['auton_ci_switch',
                 'cube_vault',
                 'fouls',
                 'tech_fouls',
+                'parking',
                 'climbing',
                 'hanging',
                 'helping_robot',
+                'source',
                 'comments']
 powerup_rankings = {'tech_fouls':0}
-POWER_UP = Game(powerup_cats, powerup_cats[:-1], None, powerup_process_scouting, powerup_rankings)
+POWER_UP = Game(powerup_cats, powerup_cats[:-2], None, powerup_process_scouting, powerup_rankings)
 
 GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}
