@@ -142,6 +142,7 @@ def combine_scouting_from_sources(scouting, source_order):
         result[team] = n_ts
     return result
 
+###STEAMWORKS
 def steamworks_process_match(match):
     if 'caught_rope' in match:
         match = match.copy()
@@ -189,6 +190,7 @@ steamworks_rankings = {'auton_lowgoal':1,
                        'caught_rope':0}
 STEAMWORKS = Game(steamworks_cats, steamworks_cats[:-1], None, steamworks_process_scouting, steamworks_rankings)
 
+###Code for using scouting data from 3322.
 EAGLE_NAME_DICT = {'Crosses the auto line (auto-run)':'cross_line',
                    'Number of Cubes in Exchange':'cube_vault',
                    'Number of cubes in auton':'auton_cube_count',
@@ -217,6 +219,7 @@ def eagle_climb_convert_climb(token):
         return 1
     return 0
 
+#POWERUP
 def powerup_process_match(match):
     match = match.copy()
     
@@ -271,4 +274,16 @@ powerup_cats = ['cross_line',
 powerup_rankings = {'tech_fouls':0}
 POWER_UP = Game(powerup_cats, powerup_cats[:-2], None, powerup_process_scouting, powerup_rankings)
 
-GAMES_FROM_YEARS = {'2017':STEAMWORKS, '2018': POWER_UP}
+#DEEP SPACE
+def deepspace_process_scouting(scouting):
+    pass
+
+deepspace_cats = ['source',
+                  'comments']
+deepspace_rankings = {}
+
+DEEP_SPACE = Game(deepspace_cats, deepspace_cats[:-2], None, deepspace_process_scouting, deepspace_rankings)
+
+GAMES_FROM_YEARS = {'2017':STEAMWORKS,
+                    '2018':POWER_UP,
+                    '2019':DEEP_SPACE}
